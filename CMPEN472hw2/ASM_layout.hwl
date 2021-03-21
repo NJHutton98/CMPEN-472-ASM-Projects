@@ -1,0 +1,20 @@
+OPEN source 0 0 50 100
+Source < attributes TOOLTIP on,TOOLTIP_FORMAT signed,TOOLTIP_MODE details,FREEZE off,MARKS off
+OPEN assembly 50 0 50 29
+Assembly < attributes ADR on,CODE off,ABSADR on,SYMB off,FORMAT Auto,FREEZE off,TOPPC 0x3111
+OPEN register 50 29 49 11
+Register < attributes FORMAT AUTO,COMPLEMENT None
+OPEN memory 50 67 50 33
+Memory < attributes FORMAT hex,COMPLEMENT None,WORD 1,ASC on,ADR on,MODE automatic,UPDATERATE 10,ADDRESS 0x3000
+OPEN Visualizationtool 50 41 50 26
+VisualizationTool< Attributes [stEditM="0",swRefresh="3",refCycles="1"]
+VisualizationTool< LoadInstrument LED[BoundX="25",BoundY="30",Port="0x0001",Port_PortEndian="1",swBIT="7"]
+VisualizationTool< LoadInstrument LED[BoundX="52",BoundY="30",Port="0x0001",Port_PortEndian="1",swBIT="6"]
+VisualizationTool< LoadInstrument LED[BoundX="78",BoundY="30",Port="0x0001",Port_PortEndian="1",swBIT="5"]
+VisualizationTool< LoadInstrument LED[BoundX="103",BoundY="30",Port="0x0001",Port_PortEndian="1",swBIT="4"]
+VisualizationTool< LoadInstrument DILSwitch[BoundX="37",BoundY="65",Port="0x0001"]
+VisualizationTool< ResetVT Undo
+bckcolor 50331647
+font 'Courier New' 9 BLACK
+AUTOSIZE on
+ACTIVATE "Register" "Assembly" "Memory" "VisualizationTool" "Source"
