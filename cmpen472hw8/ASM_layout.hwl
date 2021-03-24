@@ -1,0 +1,22 @@
+OPEN source 0 0 60 47
+Source < attributes TOOLTIP on,TOOLTIP_FORMAT signed,TOOLTIP_MODE details,FREEZE off,MARKS off
+OPEN assembly 60 0 40 30
+Assembly < attributes ADR on,CODE on,ABSADR on,SYMB off,FORMAT Auto,FREEZE off,TOPPC 0x3100
+OPEN register 60 30 40 12
+Register < attributes FORMAT AUTO,COMPLEMENT None
+OPEN memory 60 75 40 25
+Memory < attributes FORMAT hex,COMPLEMENT None,WORD 1,ASC on,ADR on,MODE automatic,UPDATERATE 10,ADDRESS 0x3000
+OPEN Terminal 0 46 60 54
+Terminal < attributes CACHESIZE 1000
+Terminal < attributes SCI_DEFAULT_TEXT "Virtual SCI",SCI_CONNECTION 0,1,SCI_CONNECTION 1,0,SCI_CONNECTION 1,3,SCI_CONNECTION 3,1,SCI_PORT COM1,SCI_BAUD  9600,SCI_SHOW_PROTOCOL OFF,SCI_VIRTUAL_IN "Sci:2.SerialOutput",SCI_VIRTUAL_OUT "Sci:2.SerialInput",SCI_FILENAME_IN "",SCI_FILENAME_OUT ""
+OPEN Visualizationtool 60 42 40 33
+VisualizationTool< Attributes [swRefresh="3",refCycles="1"]
+VisualizationTool< LoadInstrument Seg7[BoundX="49",BoundY="32",Port="0x01",swDM="2",colOutL="T1,0"]
+VisualizationTool< LoadInstrument Seg7[BoundX="96",BoundY="33",Port="0x01",swDM="1",colOutL="T1,0"]
+VisualizationTool< LoadInstrument DILSwitch[BoundX="181",BoundY="53",Port="0x01",Port_PortEndian="1"]
+VisualizationTool< LoadInstrument LED[BoundX="203",BoundY="167",Port="0x01"]
+VisualizationTool< ResetVT Undo
+bckcolor 50331647
+font 'Courier New' 9 BLACK
+AUTOSIZE on
+ACTIVATE "Register" "Memory" "Assembly" "Source" "VisualizationTool" "Terminal"
