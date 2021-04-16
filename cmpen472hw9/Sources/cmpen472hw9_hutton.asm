@@ -355,7 +355,7 @@ timeError                            ; no recognized command entered, print err 
 
 
 s           ldab  CCount
-            cmpa  #$05
+            cmpb  #$05
             bhi   timeError
             ldaa  1,X+
             cmpa  #$20              ; ensure second character in input is space
