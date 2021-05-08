@@ -1,0 +1,207 @@
+<HTML>
+<HEAD>
+<TITLE>CMPEN 472 Homework 6, The Pennsylvania State University</TITLE>
+</HEAD>
+
+<BODY>
+<font face="Arial,Helvetica">
+
+<CENTER>CMPEN 472, The Pennsylvania State University</CENTER>
+
+<CENTER><h3>Homework 6</h3></CENTER>
+
+<p>Due: March 8, 2021 &nbsp; &nbsp; 11:30pm
+
+<h4>Objective</h4>
+
+<p>To learn how to use arithmetic instructions and write basic system I/O 
+subroutines.   Learn user interface through a serial port.
+
+<h4>Instruction</h4>
+
+<ol>
+<li>Write a user-friendly system program for the following commands:<br>
+<br>
+
+  S:    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Show the contents of memory location<br>
+  W:    &nbsp;&nbsp;&nbsp;&nbsp; Write the data byte to memory location<br>
+  QUIT: &nbsp; Quit the main program, run 'Type writer' program.<br>
+
+<br><li><b>Command S:</b> This command shows the contents of memory location
+specified by the address in hexadecimal number followed by the 'S' character.  
+For example, if the data $6A is stored in memory location $3000, 
+a user types in the first line ending with Enter/Return key and 
+the following should be displayed on the HyperTerminal connected 
+to the HCS12 board:<br>
+
+<br>
+>S$3000<br>
+ &nbsp;&nbsp; $3000 = $6A     &nbsp;&nbsp; 106<br>
+><br>
+
+<br>The data $6A is printed in <b>both hexadecimal and decimal</b> 
+number format.  The character '>' is the prompt for this program.<br>
+
+<br><li><b>Command W:</b> this command writes data into the memory location
+specified by the address in hexadecimal followed by the 'W' character.  The data to
+be written to the memory location is followed by a space and it can be
+specified by hexadecimal '$' or just decimal number.  For example,
+if one wants to store the data $6A in memory location $3001, a user types in the
+first line ending with Enter/Return key and the following should
+be displayed on the HyperTerminal connected to the HCS12 board:<br>
+
+<br>
+>W$3001 106<br>
+ &nbsp;&nbsp; $3001 = $6A     &nbsp;&nbsp; 106<br>
+><br>
+
+<br>
+Or<br>
+
+<br>
+>W$3001 $6A<br>
+ &nbsp;&nbsp; $3001 = $6A     &nbsp;&nbsp; 106<br>
+><br>
+
+<br>As a result, the data $6A is stored in the memory location $3001 and it is
+shown with the 'S' command.  The 'W' command accepts both '106' or '$6A'
+as an 8 bit number.<br>
+
+<br><li>For HCS12 chip, assume memory address is a 16 bit number and each memory 
+location hold an 8 bit data.</li>
+
+<br><li>Design the program to start at $3100 and data to start at $3000.</li>
+
+<br><li>Make your program user-friendly and fool proofed.
+Print detail guide on the terminal screen so that users will properly
+use your program.  Once your program is running, everything must be
+self-explanatory to user at the Hyper Terminal.</li>
+
+<br><li>For this homework, you must do error checking 
+to see if correct input is entered by a user.  And give
+correct command usage example if invalid command was entered.
+Your program must NOT crash 
+or hang if a user enters wrong input.</li>
+
+<br><li>The HyperTerminal display should look something like the following:
+
+<pre>
+go 3100
+
+Welcome to the Simple Memory Access Program!  Enter one of the following
+commands (examples shown below) and hit 'Enter'.
+
+>S$3000                 ;to see the memory content at $3000
+> $3000 = $6A    106
+>
+
+>W$3001 $6A             ;to write $6A to memory location $3001
+> $3000 = $6A    106
+>
+
+>W$3001 106             ;to write $6A to memory location $3001
+> $3000 = $6A    106
+>
+
+ QUIT                   ;to the Simple Memory Access Program
+ Type writing now:
+
+>S$30G0 
+> invalid input, address
+>
+
+>S$30123
+> invalid input, address
+>
+
+>S345678
+> invalid input, address
+>
+
+>W$3001 $6AB 
+> invalid input, data
+>
+
+>W$3001 300 
+> invalid input, data
+>
+
+>W$3001 
+> invalid input, data
+>
+
+>W$3001 -106 
+> invalid input, data
+>
+
+>W$3 $0F
+> $0003 = $0F    15
+>
+
+>W$300 $9
+> $0300 = $09    9
+>
+
+>W$4000 12
+> $4000 = $0C    12
+>
+
+>W$0001 005
+> $0001 = $05    5
+>
+</pre>
+
+<br><li>You may want to first draw the Flow Chart of the above algorithm.</li>
+
+<br><li>Be sure to put much comments so that grader and others can clearly and
+quickly understand your program.  Comments are very
+important in assembly language programs. </li>
+
+<br><li>You may want to see and check the <a href="cmpen472HW6gr02.pdf">
+Sample Grading Sheet</a> for this homework.</li>
+
+<br><li>
+Copy your 'main.asm' file to 'cmpen472hw6_YourLastName.asm'.
+For example, mine will be 'cmpen472hw6_choi.asm'  Then turn-in your .asm file
+(do NOT ZIP your file).
+</li>
+
+<br><li>
+   Turn-in your project source code file through 
+   <a href="https://psu.instructure.com/login/ldap">Penn State CANVAS</a>.
+   Upload your source code file into the CANVAS Assignment's Homework 
+   submission.  Be sure to select CMPEN 472 class and correct Homework 
+   number, and with correct file name.
+</li>
+
+</ol>
+
+<p>Congratulations on your sixth CMPEN 472 homework completion!
+
+<hr>
+<p>
+<b>Epilogue:</b>
+
+<p>
+Aid for the Homework 6.
+<a href="HW6aid1etc.pdf"> Click here.</a>
+
+<hr>
+
+<pre>
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+
+</font>
+</BODY>
+</HTML>

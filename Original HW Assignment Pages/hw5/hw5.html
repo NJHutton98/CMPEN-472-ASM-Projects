@@ -1,0 +1,155 @@
+<HTML>
+<HEAD>
+<TITLE>CMPEN 472 Homework 5, The Pennsylvania State University</TITLE>
+</HEAD>
+
+<BODY>
+<font face="Arial,Helvetica">
+
+<CENTER>CMPEN 472, The Pennsylvania State University</CENTER>
+
+<CENTER><h3>Homework 5</h3></CENTER>
+
+<p>Due: Feb. 26, 2021 &nbsp; 11:30pm
+
+<h4>Objective</h4>
+
+<p>To learn how to use serial port for cummunications,
+how to write subroutines, how to construct LOOPs, and 
+how to do user interaction.
+
+<p>
+&nbsp; &nbsp; 
+<img SRC="20200925_120632ss.jpg" width="47%"> &nbsp; &nbsp; &nbsp;
+<img SRC="20200925_120704s.jpg" width="30%">
+
+<h4>Note on board names</h4>
+
+<p>CSM12C128 board is also called HCS12C128 board or APS12C128 board.
+It contains the MC9S12C128 microcontroller chip.  In the previous years,
+the class used smaller CSM12C32 boards with MC9S12C32 microcontroller chip.
+The main differences are the on-chip RAM size and flash memory size.  
+The RAM on MC9S12C128 chip starts at $3000 and the RAM on MC9S12C32 chip 
+starts at $3800.  Otherwise, both chips are practically the same.
+
+<p>This Semester, we are using ONLY the CodeWarrior Debugger/Simulator to 
+show the hardware and program workings.  For the grading of all homework 
+during this Semester, we will be testing your program on the CodeWarrior 
+simulator only.
+
+<h4>Instruction</h4>
+
+<ol>
+
+<li>Read the HCS12 Microcontroller refference manual, 
+<a href="http://www.freescale.com/files/microcontrollers/doc/ref_manual/S12CPUV2.pdf"> 
+S12CPUV2</a> and  data sheet Chapters 1, 2, and 13 of 
+<a href="http://www.freescale.com/files/microcontrollers/doc/data_sheet/MC9S12C128V1.pdf"> 
+MC9S12C Family</a>.</li>
+
+<br><li>Copy the Homework 5 Sample program <a href="HW5start.asm"> <b>HW5start.asm</b></a> file.  
+Study it, assemble it, debug it, and run it on the CodeWarrior Debugger/Simulator.</li>
+
+<br><li>For the CodeWarrior simulation, please follow the 
+<b><a href="CWchipSimulatorGuide4.pdf"> Full Chip Simulator/Debugger - Homework 5 Sample 
+program guide</a></b>, with Terminal component.  
+The sample program is the 'Type writer' - what you type is 
+what you see (on the Terminal component).</li>
+
+<br><li>Write the user friendly, menu driven, and fool-proofed 
+program, 'main.asm', to turn on/off LEDs and dimm the LED lights 
+on CSM12C128 board as follows:<br>
+<br>
+
+<b>Print the following menu on the Hyper Terminal:</b></li>
+<br>
+
+  L1: Turn on  LED1<br>
+  F1: Turn off LED1<br>
+  L2: LED 2 goes from   0% light level to 100% light level in 4 seconds<br>
+  F2: LED 2 goes from   100% light level to 0% light level in 4 seconds<br>
+  L3: Turn on  LED3<br>
+  F3: Turn off LED3<br>
+  L4: Turn on  LED4<br>
+  F4: Turn off LED4<br>
+  QUIT: Quit menu program, run 'Type writer' program.<br>
+<br>
+
+<br><li>When user type in the menu selection followed 
+by a 'Return/Enter' key, you program controls the LED lights accordingly.
+And you will be able to see the effects on the CodeWarrior Debugger/Simulator.</li>
+
+<br><li>Your program MUST turn on/off individual LED lights, independent
+of the other LED lights.  If you turn on LED1 followed by LED3, both
+LED1 and LED3 must be on.  Please see the sample program for 
+Homework 2 - for an example of 
+how to turn on/off LED1 only.  And please see the sample program for
+Homework 3 - for an example of how to turn on/off LED4 only.</li>
+
+<br><li>Print detail guide on the terminal screen so that users 
+will properly use your program.  Once your program is running, 
+everything must be self explanatory to user at the Terminal component
+attached to SCI Port.
+(use Hyper Terminal connected on CSM12C128 board if usng the MC9S12C128 
+microcontroller chip.).</li>
+
+<br><li>Also, make your program 'fool-proof', never crash or stop 
+based on wrong user response.</li>
+
+<br><li>Design the program to start at $3100 and data to start at $3000.</li>
+
+<br><li>If you are not sure how to start, please take a look at
+an example <a href="HW5flowChart0c.pdf"> hw5 flow chart.  You may build
+up your program step by step.</a></li>
+
+<br><li>Be sure to put much comments so that grader and others can 
+clearly and quickly understand your program.  Comments are very
+important in assembly language programs.</li>
+
+<br><li>You may want to see and check the <a href="cmpen472HW5gr02.pdf">
+Sample Grading Sheet</a> for this homework.</li>
+
+<br><li>
+Copy your 'main.asm' file to 'cmpen472hw5_YourLastName.asm'.
+For example, mine will be 'cmpen472hw5_choi.asm'  Do not ZIP your 
+'cmpen472hw5_YourLastName.asm' file.
+</li>
+
+<br><li>
+   Turn-in your project source code file through 
+   <a href="https://psu.instructure.com/login/ldap">Penn State CANVAS</a>.
+   Upload your source code file into the CANVAS Assignment's Homework 
+   submission.  Be sure to select CMPEN 472 class and correct Homework 
+   number, and correct file name.
+</li>
+
+</ol>
+
+<p>Congratulations on your fifth CMPEN 472 homework completion!
+
+<hr>
+<p>
+<b>Epilogue:</b>
+
+<p>
+Flow chart of the Homework 5 program.
+<a href="HW5flowChart0c.pdf"> Click here.</a>
+
+<p>
+Aid for the Homework 5.
+<a href="HW5aid2etc.pdf"> Click here.</a>
+
+<hr>
+
+<pre>
+
+
+
+
+
+
+</pre>
+
+</font>
+</BODY>
+</HTML>

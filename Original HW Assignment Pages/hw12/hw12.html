@@ -1,0 +1,205 @@
+<HTML>
+<HEAD>
+<TITLE>CMPEN 472 Homework 12, The Pennsylvania State University</TITLE>
+</HEAD>
+
+<!--   -->
+
+<BODY>
+<font face="Arial,Helvetica">
+
+<CENTER>CMPEN 472, The Pennsylvania State University</CENTER>
+
+<CENTER><h3>Homework 12: Calculator, Digital Clock, and ADC Data Acquisition Program with HCS12</h3></CENTER>
+
+<p>Due: Dec. 03, 2020 &nbsp;&nbsp;&nbsp; 11:30pm
+
+<h4>Objective</h4>
+
+<p>To learn interrupt based multi-tasking programming with multiple interrupt sources.
+
+<h4>Textbook Reading (for next homework):</h4>
+<ol>
+<li>MC9S12C128 Family Data Sheet: ALL Chapters 
+</ol>
+
+<h4>Instruction</h4>
+
+<ol>
+
+<li>Combine the Homework 7, Homework 8, and Homework11; that is, Write a program to make <br>
+a calculator, a digital clock, and an Analog Data acquisition on the HCS12 chip.</li>
+
+<br><li>The calculator and digital clock rules are:<br>
+<br>
+   <ol>
+   <li>Input positive decimal numbers only
+   <li>Input maximum three-digit numbers only
+   <li>Valid operators are: +, -, *, and /
+   <li>Input number with leading zero is OK
+   <li>Input only two numbers and one operator in between, no spaces
+   <li>Show 'Tcalc> 'prompt and echo print user keystrokes until Return key
+   <li>Repeat print user input and print answer after the '=' sign   
+   <li>In case of an invalid input format, repeat print the user input until the error character
+   <li>In case of an invalid input format, print error message on the next line: 'Invalid input format'
+   <li>Keep 16bit internal binary number format, detect and flag overflow error
+   <li>Use integer division and truncate any fraction
+   <li>60 second (0 to 59) clock
+   <li>"s" for 'set time' command
+   <li>Update the time display every second
+   <li>Time display: two 7-segment displays on PORTB 
+   <li>Calculator display: on the terminal screen 
+   <li>Use Real Time Interrupt feature to keep the time
+   </ol>
+
+<br><li>The Terminal display should look something like the 
+following (same rules as Homework 7 and 8):
+
+<pre>
+Tcalc>
+Tcalc> 123+4
+       123+4=127
+Tcalc> 96*15
+       96*15=1440
+Tcalc> 456@5
+       456@
+       Invalid input format
+Tcalc> 7h4*12
+       7h
+       Invalid input format
+Tcalc> 3*1234
+       3*1234
+       Invalid input format	;due to 4th digit
+Tcalc> 003-678
+       003-678=-675
+Tcalc> 100+999*2
+       100+999*
+       Invalid input format
+Tcalc> 555/3
+       555/3=185
+Tcalc> 7*(45+123)
+       7*(
+       Invalid input format
+Tcalc> 78*999
+       78*999
+       Overflow error
+Tcalc> -2*123
+       -
+       Invalid input format
+Tcalc> 73/15
+       73/15=4
+Tcalc>
+Tcalc> s 59
+Tcalc> 
+Tcalc> s 05:552:5
+       Invalid time format. Correct example => 0 to 59
+Tcalc> s 75
+       Invalid time format. Correct example => 0 to 59
+Tcalc> s 1F
+       Invalid time format. Correct example => 0 to 59 
+Tcalc> q
+       Stop clock and calculator, start Typewrite program
+
+</pre>
+
+<li>In addition to the Calculator and the Digital Clock programs running, 
+the ADC Data Acquisition program <br>
+should be running also when a user
+presses the Switch SW0 at PORTA bit 0.  <br>
+The ADC Data Acquisition program is outlined as follows (similar to Homework 11):<br>
+<br>
+   <ol>
+   <li>The SCI port Terminal baud rate at 750Kbaud.
+   <li>Activated when the Switch SW0 pressed at PORTA bit 0.
+   <li>Start the <b>Timer Module Channel 2 Output Compare</b> interrupt generation at 
+       every 125usec (8KHz rate). <br>
+       Each time the Output Compare interrupt occurs, carry out the following tasks:<br>
+
+<br>
+   <ol>
+   <li>Pick up the ADC result (from previous conversion) and set the flag 'happened'.  <br>
+       Only the lower 8-bit of the ADC result should be picked up (and saved temporalily, <br>
+       to be converted to a decimal representation of the data in ASCII characters in main
+       program later).  
+   <li>Start a single Analog-to-Digital conversion of the signal on the AN7 pin
+   <li>Service the Output Compare (OC2) register (update the counter compare number) for the
+       next interrupt. <br>  Also clear the OC2 interrupt flag.
+   </ol>
+<br>
+
+   <li>In the main program, if the Timer OC2 interrupt 'happened', 
+       then send the most recently acquired data <br>
+       to the Terminal.  Convert the data to decimal representation in ASCII characters 
+       before sending it to the Terminal.
+   <li>Repeat until the transmit data count to be 1024
+   <li>Print a completion message on the Terminal when the 1024 data transmission completes.
+   <li>ADC Data Acquisition repeats every time the Switch SW0 is pressed while the
+       Calculator and the Digital Clock is running at the same time.
+   </ol>
+
+<br><li>Once your HW12 is finished, run it many times to test that it works.  For the ADC Acquisition,
+    Change the analog signal wave frequency as well as the wave type as you test your HW12.
+    Repeat the data acquisition and plotting.  Use the same wave form signal files given
+    for the HW11</li>
+
+<br><li>Write a report of your HW12 program and your experiments, similar to Homework 11.</li>
+
+<br><li>Make your program user friendly by giving simple directions 
+as to how to correctly use your program. </li>
+
+<br><li>Also, make your program 'fool-proof', never crash or stop based on wrong 
+user response. </li>
+
+<br><li>You may add other features or decorations.</li>
+
+<br><li>Use as many re-usable subroutines as possible, and make your overall program 
+to be small.  So you may re-visit your Homework 7, 8, and 11, and identify the tasks in
+your main program that can be made to be subroutines.  Once you made those subroutines,
+your main program becomes much simpler and your overall program be smaller.  
+In many cases, your program may be run faster too.</li>
+
+<br><li>Design the program to start at $3100 and data to start at $3000.</li>
+
+<br><li>Be sure to put many comments so that grader and others can clearly and
+quickly understand your program.  Comments are very
+important in assembly language programs.</li>
+
+<!--   -->
+<br><li>You may want to see and check the <a href="cmpen472HW12gr01.pdf">
+Sample Grading Sheet</a> for this homework.</li>
+
+
+<br><li>
+Copy your 'main.asm' file to 'cmpen472hw12_YourLastName.asm'.
+For example, mine will be 'cmpen472hw12_choi.asm'  Do not ZIP your 
+'cmpen472hw12_YourLastName.asm' file.</li>
+
+<br><li>Name your Homework 12 report file to 'cmpen472hw12_YourLastName_RPT.doc'.
+    For example, mine will be 'cmpen472hw12_choi_RPT.doc'  Do not ZIP your 
+    'cmpen472hw12_YourLastName_RPT.doc' file.</li>
+
+<br><li>
+   Turn-in your project source code file through 
+   <a href="https://psu.instructure.com/login/ldap">Penn State CANVAS</a>.
+   Upload your source code file into the CANVAS Assignment's Homework 
+   submission.  Be sure to select CMPEN 472 class and correct Homework 
+   number, and with correct file name.
+</li>
+
+</ol>
+
+<p>Congratulations on your 12th CMPEN 472 homework completion!
+
+<hr width="100%">
+
+<pre>
+
+
+
+
+
+</pre>
+
+</font>
+</BODY>
+</HTML>

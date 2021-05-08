@@ -1,0 +1,1399 @@
+<html><head>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta name="generator" content="GoLive CyberStudio">
+		<title>Assembly Language Syntax by Valvano</title>
+	</head>
+	<body link="#0000FF" vlink="#800080">
+		<p><b><font size="4"><a name="top"></a>Developing Software in Assembly Language<br>
+		Syntax<br>
+		By Jonathan W. Valvano<br>
+Copied from:  http://users.ece.utexas.edu/~valvano/assmbly/syntax.htm<br>
+		<br>
+		</font></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;This article, which discusses assembly language programming,
+		accompanies the book <u>Embedded Microcomputer Systems: Real Time Interfacing</u> published by Brooks-Cole 1999. This document has four overall
+		parts<b><font size="4"><br>
+		</font></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Overview <b> <font size="4"><br>
+		</font></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Syntax (fields, pseudo ops) (this document)<b><font size="4"><br>
+		</font></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Local variables<b><font size="4"><br>
+		</font></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Examples </p>
+		<p><br>
+		<b><font size="4">Assembly Language Syntax</font></b><font size="4"><br>
+		</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Programs written in assembly language consist of a sequence
+		of source statements. Each source statement consists of a sequence
+		of <a href="#ascii">ASCII</a><font face="Helv,Helvetica"> </font>characters ending with a carriage return. Each source statement
+		may include up to four fields: a label, an operation (instruction
+		mnemonic or assembler directive), an operand, and a comment. The
+		following are examples of an assembly directive and a regular
+		machine instruction.<br>
+		<font color="#FF00FF" size="2" face="Courier,Courier New">PORTA</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier,Courier New">equ</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">$0000</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;&nbsp;; Assembly time constant<br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">Inp</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldaa</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">PORTA</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;&nbsp;; Read data from fixed address I/O data port</font></p>
+		<p>An assembly language statement contains the following fields.
+		<br>
+		<font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="#labels">Label Field</a><font color="#FF00FF"> can be used to define a symbol<br>
+		</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="#operation">Operation Field</a><font color="#0000FF"> defines the operation code </font>or <font color="#808080">pseudo-op</font><br>
+		<font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="#operand">Operand Field</a> specifies either the address or the data.<br>
+		<font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><a href="#comments">Comment Field</a><font color="#008000"> allows the programmer to document the software.</font></p>
+		<p>Sometimes not all four fields are present in an assembly language
+		statement. A line may contain just a comment. The first token
+		in these lines must begin with a star (*) or a semicolon (;).<b><font size="2"> </font></b>For example,<br>
+		<font color="#008000" size="2" face="Courier,Courier New">; This line is a comment<br>
+		* This is a comment too<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;* This line is a comment</font></p>
+		<p>Instructions with inherent mode addressing do not have an operand
+		field. For example,<font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">label</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">clra</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">comment<br>
+		</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">deca</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">comment</font><font color="#0000FF" size="2" face="Courier,Courier New"> </font><font color="#008000" size="2" face="Courier,Courier New"><br>
+		</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">cli</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">comment</font><font color="#0000FF" size="2" face="Courier,Courier New"> </font><font color="#008000" size="2" face="Courier,Courier New"><br>
+		</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">inca</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">comment</font><font color="#0000FF" size="2" face="Courier,Courier New"> </font></p>
+		<p><br>
+		<b><i>Recommendation</i></b><i>: For small programs, you enable automatic assembly colors. The
+		editor will then color each field according to its type. </i></p>
+		<p><b><i>Recommendation</i></b><i>: For large programs, you disable automatic assembly colors, because
+		the system will run too slow. Instead, use the assembler to color
+		the source code. </i></p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="labels"></a><b><font size="4">Label Field</font></b><font size="4"><br>
+		</font>The label field occurs as the first field of a source statement.
+		The label field can take one of the following three forms:</p>
+		<p>A. An asterisk (*) or semicolon (;) as the first character in
+		the label field indicates that the rest of the source statement
+		is a comment. Comments are ignored by the Assembler, and are printed
+		on the source listing only for the programmer's information. Examples:<br>
+		<font color="#008000" size="2" face="Courier,Courier New">* This line is a comment<br>
+		; This line is also a comment</font></p>
+		<p>B. A white-space character (blank or tab) as the first character
+		indicates that the label field is empty. The line has no label
+		and is not a comment. These assembly lines have no labels:<font color="#008000" size="2" face="Courier,Courier New"><br>
+		</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldaa</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">0</font><font color="#008000" size="2" face="Courier,Courier New"><br>
+		</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier,Courier New">rmb</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">10</font></p>
+		<p><br>
+		C. A symbol character as the first character indicates that the
+		line has a label. Symbol characters are the upper or lower case
+		letters a- z, digits 0-9, and the special characters, period (.),
+		dollar sign ($), and underscore (_). Symbols consist of one to
+		15 characters, the first of which must be alphabetic or the special
+		characters period (.) or underscore (_). All characters are significant
+		and upper and lower case letters are distinct.</p>
+		<p>A symbol may occur only once in the label field. If a symbol does
+		occur more than once in a label field, then each reference to
+		that symbol will be flagged with an error. The exception to this
+		rule is the <i>set</i> pseudo-op that allows you to define and redefine the same symbol.
+		We typically use set to define the stack offsets for the local
+		variables in a subroutine. For more information see the <u>examples of local variables</u>. Set allows two separate subroutines to re-use the same name
+		for their local variables.</p>
+		<p>With the exception of the<font size="2" face="Courier,Courier New">&nbsp;</font><a href="#equ">equ</a><font size="2" face="Courier,Courier New">&nbsp;</font> <a href="#equ">=</a><font size="2" face="Courier,Courier New">&nbsp;</font>and<font size="2" face="Courier,Courier New">&nbsp;</font><a href="#set">set</a><font size="2" face="Courier,Courier New">&nbsp;</font> directives, a label is assigned the value of the program counter
+		of the first byte of the instruction or data being assembled.
+		The value assigned to the label is absolute. Labels may optionally
+		be ended with a colon (:). If the colon is used it is not part
+		of the label but merely acts to set the label off from the rest
+		of the source line. Thus the following code fragments are equivalent:<font color="#008000" size="2" face="Courier,Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">here</font><font size="2" face="Courier,Courier New">:&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">deca</font><font color="#008000" size="2" face="Courier,Courier New"><br>
+		</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">bne</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">here</font></p>
+		<p><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">here</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">deca</font><font color="#008000" size="2" face="Courier,Courier New"><br>
+		</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">bne</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">here</font></p>
+		<p><br>
+		A label may appear on a line by itself. The assembler interprets
+		this as set the value of the label equal to the current value
+		of the program counter. A label may occur on a line with a pseudo-op.</p>
+		<p>The symbol table has room for at least 2000 symbols of length
+		8 characters or less. Additional characters up to 15 are permissible
+		at the expense of decreasing the maximum number of symbols possible
+		in the table.</p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="operation"></a><b><font size="4">Operation Field</font></b><font size="4"><br>
+		</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The operation field occurs after the label field, and must
+		be preceded by at least one white-space character. The operation
+		field must contain a legal opcode mnemonic or an assembler directive.
+		Upper case characters in this field are converted to lower case
+		before being checked as a legal mnemonic. Thus 'nop', 'NOP', and
+		'NoP' are recognized as the same mnemonic. Entries in the operation
+		field may be one of two types:</p>
+		<p><i>Opcode</i>. These correspond directly to the machine instructions. The <u>operation code</u> includes any register name associated with the instruction. These
+		register names must not be separated from the opcode with any
+		white-space characters. Thus 'clra' means clear accumulator A,
+		but 'clr a' means clear memory location identified by the label
+		'a'. The available instructions depend on the microcomputer you
+		are using</p>
+		<p><i>Directive</i>. These are special operation codes known to the Assembler that
+		control the assembly process rather than being translated into
+		machine instructions. The pseudo-op codes supported by this assembler
+		are</p>
+		<p><table border="0" cellspacing="0" width="516">
+
+			<tbody><tr>
+				<td valign="TOP" width="13%"><font size="2">Group A</font></td>
+				<td valign="TOP" width="13%"><font size="2">Group B</font></td>
+				<td valign="TOP" width="13%"><font size="2">Group C</font></td>
+				<td valign="TOP" width="60%"><font size="2">meaning</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#org">org</a></td>
+				<td valign="TOP" width="13%"><a href="#org">org</a></td>
+				<td valign="TOP" width="13%"><a href="#org">.org</a></td>
+				<td valign="TOP" width="60%"><font size="2">Specific absolute address to put subsequent object code</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#equ">=</a></td>
+				<td valign="TOP" width="13%"><a href="#equ">equ</a></td>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="60%"><font size="2">Define a constant symbol</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="13%"><a href="#set">set</a></td>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="60%"><font size="2">Define or redefine a constant symbol</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#fcb">dc.b</a><font size="2"> </font><a href="#fcb">db</a></td>
+				<td valign="TOP" width="13%"><a href="#fcb">fcb</a></td>
+				<td valign="TOP" width="13%"><a href="#fcb">.byte</a></td>
+				<td valign="TOP" width="60%"><font size="2">Allocate byte(s) of storage with initialized values</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="13%"><a href="#fcc">fcc</a></td>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="60%"><font size="2">Create an ASCII string (no termination character)</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#fdb">dc.w</a><font size="2"> </font><a href="#fdb">dw</a></td>
+				<td valign="TOP" width="13%"><a href="#fdb">fdb</a></td>
+				<td valign="TOP" width="13%"><a href="#fdb">.word</a></td>
+				<td valign="TOP" width="60%"><font size="2">Allocate word(s) of storage with initialized values</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#dcl">dc.l</a><font size="2"> </font><a href="#dcl">dl</a></td>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="13%"><a href="#dcl">.long</a></td>
+				<td valign="TOP" width="60%"><font size="2">Allocate 32 bit long word(s) of storage with initialized values</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#rmb">ds</a><font size="2"> </font><a href="#rmb">ds.b</a></td>
+				<td valign="TOP" width="13%"><a href="#rmb">rmb</a></td>
+				<td valign="TOP" width="13%"><a href="#rmb">.blkb</a></td>
+				<td valign="TOP" width="60%"><font size="2">Allocate bytes of storage without initialization</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#dsw">ds.w</a></td>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="13%"><a href="#dsw">.blkw</a></td>
+				<td valign="TOP" width="60%"><font size="2">Allocate words of storage without initialization</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#dsl">ds.l</a></td>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="13%"><a href="#dsl">.blkl</a></td>
+				<td valign="TOP" width="60%"><font size="2">Allocate 32 bit words of storage without initialization</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#end">end</a></td>
+				<td valign="TOP" width="13%"><a href="#end">end</a></td>
+				<td valign="TOP" width="13%"><a href="#end">.end</a></td>
+				<td valign="TOP" width="60%"><font size="2">Signifies the end of the source code (</font><b><font color="#0000FF" size="2">TExaS </font></b><font size="2">ignores these)</font></td>
+			</tr>
+		</tbody></table>
+		</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;</p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="operand"></a><b><font size="4">Operand Field</font></b><font size="4"><br>
+		</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The operand field's interpretation is dependent on the contents
+		of the operation field. The operand field, if required, must follow
+		the operation field, and must be preceded by at least one white-space
+		character. The operand field may contain a symbol, an expression,
+		or a combination of symbols and expressions separated by commas.
+		There can be no white-spaces in the operand field. For example
+		the following two lines produce identical object code because
+		of the space between data and + in the first line:<br>
+		<font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldaa</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">data</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">+</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">1<br>
+		</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldaa</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">data</font></p>
+		<p><font face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>The operand field of machine instructions is used to specify the
+		addressing mode of the instruction, as well as the operand of
+		the instruction. The following table summarizes the operand field
+		formats. </p>
+		<p><table border="0" cellspacing="0" width="534">
+
+			<tbody><tr>
+				<td valign="TOP" width="26%"><u><font size="2">Operand </font></u></td>
+				<td colspan="2" valign="TOP">&nbsp;<u><font size="2">Format</font></u></td>
+				<td colspan="2" valign="MIDDLE">&nbsp;<u><font size="2">6811/6812example</font></u></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="26%"><font size="2">no operand</font></td>
+				<td colspan="2" valign="TOP"><font size="2">accumulator and inherent</font></td>
+				<td colspan="2" valign="TOP"><font color="#0000FF" size="2" face="Courier,Courier New">clra</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="26%"><font size="2">&lt;expression&gt;</font></td>
+				<td colspan="2" valign="TOP"><font size="2">direct, extended, or relative</font></td>
+				<td colspan="2" valign="TOP"><font color="#0000FF" size="2" face="Courier,Courier New">ldaa</font><font size="2" face="Courier,Courier New"> 4</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="26%"><font size="2">#&lt;expression&gt;</font></td>
+				<td colspan="2" valign="TOP"><font size="2">immediate</font></td>
+				<td colspan="2" valign="TOP"><font color="#0000FF" size="2" face="Courier,Courier New">ldaa</font><font size="2" face="Courier,Courier New"> #4</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="26%"><font size="2">&lt;expression&gt;,R</font></td>
+				<td colspan="2" valign="TOP"><font size="2">indexed with address register</font></td>
+				<td colspan="2" valign="TOP"><font color="#0000FF" size="2" face="Courier,Courier New">ldaa</font><font size="2" face="Courier,Courier New"> 4,x</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="26%"><font size="2">&lt;expr&gt;,&lt;expr&gt;</font></td>
+				<td colspan="2" valign="TOP"><font size="2">bit set or clear</font></td>
+				<td colspan="2" valign="TOP"><font color="#0000FF" size="2" face="Courier,Courier New">bset</font><font size="2" face="Courier,Courier New"> 4,#$01</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="26%"><font size="2">&lt;expr&gt;,&lt;expr&gt;,&lt;expr&gt;</font></td>
+				<td colspan="2" valign="TOP"><font size="2">bit test and branch</font></td>
+				<td colspan="2" valign="TOP"><font color="#0000FF" size="2" face="Courier,Courier New">brset</font><font size="2" face="Courier,Courier New"> 4,#$01,there</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="26%"><font size="2">&lt;expr&gt;,R,&lt;expr&gt;,&lt;expr&gt;</font></td>
+				<td colspan="2" valign="TOP"><font size="2">bit test and branch</font></td>
+				<td colspan="2" valign="TOP"><font color="#0000FF" size="2" face="Courier,Courier New">brset</font><font size="2" face="Courier,Courier New"> 4,x,#$01,there</font></td>
+			</tr>
+		</tbody></table>
+		</p>
+		<p><br>
+		The valid syntax of the operand field depends on the microcomputer.
+		For a detailed explanation of the instructions and their addressing
+		modes, see the help system with the <b><font color="#0000FF">TExaS</font></b> application.</p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="expression"></a><b><font size="4">Expressions. <br>
+		</font></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An expression is a combination of symbols, constants, algebraic
+		operators, and parentheses. The expression is used to specify
+		a value that is to be used as an operand. Expressions may consist
+		of symbols, constants, or the character '*' (denoting the current
+		value of the program counter) joined together by one of the operators:
+		+ - * / % &amp; | ^ . </p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+&nbsp;&nbsp;add<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;subtract<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;multiply<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;divide<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%&nbsp;&nbsp;remainder after division<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;&nbsp;bitwise and<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;bitwise or<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;^&nbsp;&nbsp;bitwise exclusive or</p>
+		<p>Expressions may include parentheses and other expressions. Expressions
+		are evaluated using the standard arithmetic precedence. Evaluation
+		occurs left to right for multiple operations with the same precedence.
+		Arithmetic is carried out in signed 32-bit twos-complement integer
+		precision (on the IBM PC). </p>
+		<p><table border="0" cellpadding="0" cellspacing="0" width="234">
+
+			<tbody><tr>
+				<td valign="TOP" width="44%">Precedence</td>
+				<td valign="TOP" width="56%">operation</td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="44%">Highest</td>
+				<td valign="TOP" width="56%">parentheses</td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="44%">2</td>
+				<td valign="TOP" width="56%">unary + - ~</td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="44%">3</td>
+				<td valign="TOP" width="56%">binary * / % &amp;</td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="44%">lowest</td>
+				<td valign="TOP" width="56%">binary + - ^ |</td>
+			</tr>
+		</tbody></table>
+		</p>
+		<p>&nbsp;</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Each symbol is associated with a 16-bit integer value that
+		is used in place of the symbol during the expression evaluation.
+		The asterisk (*) used in an expression as a symbol represents
+		the current value of the location counter (the first byte of a
+		multi-byte instruction)</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Constants represent quantities of data that do not vary in
+		value during the execution of a program. Constants may be presented
+		to the assembler in one of four formats: decimal, hexadecimal,
+		binary, or <u><font face="Helv,Helvetica">ASCII</font></u>. The programmer indicates the number format to the assembler
+		with the following prefixes:</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;0x&nbsp;&nbsp;&nbsp;&nbsp;hexadecimal, C syntax<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;%&nbsp;&nbsp;&nbsp;&nbsp;binary<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;'c'&nbsp;&nbsp;&nbsp;&nbsp;<u><font face="Helv,Helvetica">ASCII</font></u><font face="Helv,Helvetica"> code for a single letter &nbsp;c&nbsp;</font></p>
+		<p>Unprefixed constants are interpreted as decimal. The assembler
+		converts all constants to binary machine code and are displayed
+		in the assembly listing as hexadecimal.</p>
+		<p>A decimal constant consists of a string of numeric digits. The
+		value of a decimal constant must fall in the range 0-65535, inclusive.
+		The following example shows both valid and invalid decimal constants:
+		</p>
+		<p><table border="0" cellspacing="0" width="322">
+
+			<tbody><tr>
+				<td valign="TOP" width="28%"><u><font size="2">VALID</font></u></td>
+				<td valign="TOP" width="28%"><u><font size="2">INVALID</font></u></td>
+				<td valign="TOP" width="45%"><u><font size="2">REASON INVALID</font></u></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="28%"><font size="2">12</font></td>
+				<td valign="TOP" width="28%"><font size="2">123456</font></td>
+				<td valign="TOP" width="45%"><font size="2">more than 5 digits</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="28%"><font size="2">12345</font></td>
+				<td valign="TOP" width="28%"><font size="2">12.3</font></td>
+				<td valign="TOP" width="45%"><font size="2">invalid character</font></td>
+			</tr>
+		</tbody></table>
+		</p>
+		<p><font size="2"><br>
+		</font>A hexadecimal constant consists of a maximum of four characters
+		from the set of digits (0-9) and the upper case alphabetic letters
+		(A-F), and is preceded by a dollar sign ($). Hexadecimal constants
+		must be in the range $0000 to $FFFF. The following example shows
+		both valid and invalid hexadecimal constants:</p>
+		<p><table border="0" cellspacing="0" width="316">
+
+			<tbody><tr>
+				<td valign="TOP" width="27%"><u><font size="2">VALID</font></u></td>
+				<td valign="TOP" width="27%"><u><font size="2">INVALID</font></u></td>
+				<td valign="TOP" width="46%"><u><font size="2">REASON INVALID</font></u></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="27%"><font size="2">$12</font></td>
+				<td valign="TOP" width="27%"><font size="2">ABCD</font></td>
+				<td valign="TOP" width="46%"><font size="2">no preceding "$"</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="27%"><font size="2">$ABCD</font></td>
+				<td valign="TOP" width="27%"><font size="2">$G2A</font></td>
+				<td valign="TOP" width="46%"><font size="2">invalid character</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="27%"><font size="2">$001F</font></td>
+				<td valign="TOP" width="27%"><font size="2">$2F018</font></td>
+				<td valign="TOP" width="46%"><font size="2">too many digits</font></td>
+			</tr>
+		</tbody></table>
+		</p>
+		<p><font size="2"><br>
+		</font>A binary constant consists of a maximum of 16 ones or zeros preceded
+		by a percent sign (%). The following example shows both valid
+		and invalid binary constants:</p>
+		<p><table border="0" cellspacing="0" width="351">
+
+			<tbody><tr>
+				<td valign="TOP" width="21%"><u><font size="2">VALID</font></u></td>
+				<td valign="TOP" width="39%"><u><font size="2">INVALID</font></u></td>
+				<td valign="TOP" width="39%"><u><font size="2">REASON INVALID</font></u></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="21%"><font size="2">%00101</font></td>
+				<td valign="TOP" width="39%"><font size="2">1010101</font></td>
+				<td valign="TOP" width="39%"><font size="2">missing percent</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="21%"><font size="2">%1</font></td>
+				<td valign="TOP" width="39%"><font size="2">%10011000101010111</font></td>
+				<td valign="TOP" width="39%"><font size="2">too many digits</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="21%"><font size="2">%10100</font></td>
+				<td valign="TOP" width="39%"><font size="2">%210101</font></td>
+				<td valign="TOP" width="39%"><font size="2">invalid digit</font></td>
+			</tr>
+		</tbody></table>
+		</p>
+		<p><font size="2"><br>
+		</font>A single <u><font face="Helv,Helvetica">ASCII</font></u><font face="Helv,Helvetica"> </font>character can be used as a constant in expressions. <u><font face="Helv,Helvetica">ASCII</font></u><font face="Helv,Helvetica"> </font>constants are surrounded by a single quotes ('). Any character,
+		except the single quote, can be used as a character constant.
+		The following example shows both valid and invalid character constants:</p>
+		<p><table border="0" cellspacing="0" width="342">
+
+			<tbody><tr>
+				<td valign="TOP" width="25%"><u><font size="2">VALID</font></u></td>
+				<td valign="TOP" width="25%"><u><font size="2">INVALID</font></u></td>
+				<td valign="TOP" width="50%"><u><font size="2">REASON INVALID</font></u></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="25%"><font size="2">'*'</font></td>
+				<td valign="TOP" width="25%"><font size="2">'VALID'</font></td>
+				<td valign="TOP" width="50%"><font size="2">too long</font></td>
+			</tr>
+		</tbody></table>
+		</p>
+		<p><font size="2"><br>
+		</font>For the invalid case above the assembler will not indicate an
+		error. Rather it will assemble the first character and ignore
+		the remainder. </p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="comments"></a><b><font size="4">Comment Field</font></b><font size="4"><br>
+		</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The last field of an Assembler source statement is the comment
+		field. This field is optional and is only printed on the source
+		listing for documentation purposes. The comment field is separated
+		from the operand field (or from the operation field if no operand
+		is required) by at least one white-space character. The comment
+		field can contain any printable <a href="#ascii">ASCII </a>characters. <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;As software developers, our goal is to produce code that
+		not only solves our current problem, but can serve as the basis
+		of our future problems. In order to reuse software we must leave
+		our code in a condition such that future programmer (including
+		ourselves) can easily understand its purpose, constraints, and
+		implementation. Documentation is not something tacked onto software
+		after it is done, but rather a discipline built into it at each
+		stage of the development. We carefully develop a programming style
+		providing appropriate comments. I feel a comment that tells us
+		<i>why</i> we perform certain functions is more informative than comments
+		that tell us what the functions are. An examples of bad comments
+		would be:<br>
+		<font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">clr</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;Flag&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">Flag=0</font><font size="2"><br>
+		</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">sei</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">Set I=1</font><font size="2"><br>
+		</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldaa</font><font size="2" face="Courier,Courier New">&nbsp;$1003&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">Read PortC</font></p>
+		<p><font face="Courier,Courier New"><br>
+		</font>These are bad comments because they provide no information to
+		help us in the future to understand what the program is doing.
+		An example of good comments would be:<br>
+		<font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">clr</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;Flag&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">Signifies no key has been typed</font><font size="2"><br>
+		</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">sei</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">The following code will not be interrupted</font><font size="2"><br>
+		</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldaa</font><font size="2" face="Courier,Courier New">&nbsp;$1003&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">Bit7=1 iff the switch is pressed </font></p>
+		<p><font face="Courier,Courier New"><br>
+		</font>These are good comments because they make it easier to change
+		the program in the future.<font face="Courier,Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>Self-documenting code is software written in a simple and obvious
+		way, such that its purpose and function are self-apparent. To
+		write wonderful code like this, we first must formulate the problem
+		organizing it into clear well-defined subproblems. How we break
+		a complex problem into small parts goes a long way making the
+		software self-documenting. Both the concept of abstraction (introduced
+		in the last section) and modular code (to be presented in the
+		next section) address this important issue of software organization.
+		<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Maintaining software is the process of fixing bugs, adding
+		new features, optimizing for speed or memory size, porting to
+		new computer hardware, and configuring the software system for
+		new situations. It is the MOST IMPORTANT phase of software development.
+		My personal opinion is that flowchart charts or software manuals
+		are not good mechanisms for documenting programs because it is
+		difficult to keep these types of documentation up to date when
+		modifications are made.<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;We should use careful indenting, and descriptive names for
+		variables, functions, labels, I/O ports. Liberal use of equ provide
+		explanation of software function without cost of execution speed
+		or memory requirements. A disciplined approach to programming
+		is to develop patterns of writing that you consistently follow.
+		Software developers are unlike short story writers. It is OK to
+		use the same <i>subroutine outline</i> over and over again. In the following program, notice the following
+		style issues:</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1) Begins and ends with a line of *'s<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) States the purpose of the subroutine<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Gives the input/output parameters, what they mean and
+		how they are passed<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Different phases (submodules) of the code delineated by
+		a line of -'s</p>
+		<p><font color="#008000" size="2" face="Courier,Courier New">******************* Max *******************************<br>
+		* Purpose: returns the maximum of two 16 bit numbers<br>
+		* This subroutine creates three 16 bit local variables <br>
+		* Inputs: Num1 and Num2 are two 16 bit unsigned numbers<br>
+		*&nbsp;&nbsp;passed in on the stack<br>
+		* Output: RegX is the maximum of X,Y<br>
+		* Destroyed: CCR<br>
+		* Calling sequence<br>
+		*</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">ldx&nbsp;&nbsp;#100<br>
+		*&nbsp;&nbsp;pshx&nbsp;&nbsp;&nbsp;&nbsp;Num1 pushed on stack<br>
+		*&nbsp;&nbsp;ldx&nbsp;&nbsp;#200<br>
+		*&nbsp;&nbsp;pshx &nbsp;&nbsp;&nbsp;&nbsp;Num2 pushed on stack<br>
+		*&nbsp;&nbsp;jsr&nbsp;&nbsp;Max<br>
+		*&nbsp;&nbsp;puly&nbsp;&nbsp;&nbsp;&nbsp;Balance stack<br>
+		*&nbsp;&nbsp;puly&nbsp;&nbsp;&nbsp;&nbsp;Result in RegX<br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">First</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier,Courier New">set</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">0</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;The first 16 bit local variable<br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">Second</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier,Courier New">set</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">2</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">The second 16 bit local variable<br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">Result</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier,Courier New">set</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">4</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">The Maximum of first,second<br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">Num1</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier,Courier New">set</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">12</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;&nbsp;Input parameter1<br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">Num2</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier,Courier New">set</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">10</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;&nbsp;Input parameter2<br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">Max</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">pshy</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">Save registers, that will be modified<br>
+		* - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">pshx</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">Allocate Result local variable<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">pshx</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">Allocate Second local variable<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">pshx</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">Allocate First local variable<br>
+		* - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">tsx</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">Create stack frame pointer<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldy</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">Num1</font><font size="2" face="Courier,Courier New">,X</font><font color="#008000" size="2" face="Courier,Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">sty</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">First</font><font size="2" face="Courier,Courier New">,X</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">Initialize First=Num1<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldy</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">Num2</font><font size="2" face="Courier,Courier New">,X</font><font color="#008000" size="2" face="Courier,Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">sty</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">Second</font><font size="2" face="Courier,Courier New">,X</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;&nbsp;Initialize Second=Num2<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldy</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">First</font><font size="2" face="Courier,Courier New">,X</font><font color="#008000" size="2" face="Courier,Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">sty</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">Result</font><font size="2" face="Courier,Courier New">,X</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;&nbsp;Guess that Result=First<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">cpy</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">Second</font><font size="2" face="Courier,Courier New">,X</font><font color="#008000" size="2" face="Courier,Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">bhs</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">MaxOK</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">Skip if First&gt;=Second<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldy</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">Second</font><font size="2" face="Courier,Courier New">,X</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;&nbsp;Since First&lt;Second<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">sty</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">Result</font><font size="2" face="Courier,Courier New">,X</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;&nbsp;make Result=Second<br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">MaxOK</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldx</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">Result</font><font size="2" face="Courier,Courier New">,X</font><font color="#008000" size="2" face="Courier,Courier New">&nbsp;&nbsp;Return Result in RegX<br>
+		* - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">puly</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">Deallocate local variables<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">puly</font><font size="2" face="Courier,Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">puly</font><font size="2" face="Courier,Courier New"><br>
+		</font><font color="#008000" size="2" face="Courier,Courier New">* - - - - - - - - - - - - - - - - - - - - - - - - - - -<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">puly</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier,Courier New">Restore registers<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">rts</font></p>
+		<p><font color="#008000" size="2" face="Courier,Courier New">****************** End of Max *****************************</font></p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="listing"></a><b><font size="4">Assembly Listing</font></b><font size="4"><br>
+		</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The assembler output includes an optional listing of the
+		source program and an <a href="#s19">object files</a>. The listing file is created when the <b>TheList.RTF</b> file is open. <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Each line of the listing contains a reference line number,
+		the address and bytes assembled, and the original source input
+		line. If an input line causes more than 8 bytes to be output (e.g.,
+		a long FCC directive), the additional bytes are included in the
+		object code (S19 file or loaded into memory) but not shown in
+		the listing. There are three assembly options, each can be toggled
+		on/off using the Assembly-&gt;Options command.</p>
+		<p><table border="0" cellspacing="0" width="420">
+
+			<tbody><tr>
+				<td valign="TOP" width="20%"><font size="2">(4)</font></td>
+				<td valign="TOP" width="14%"><font size="2">cycles</font></td>
+				<td valign="TOP" width="66%"><font size="2">shows the number of cycles to execute this instruction</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="20%"><font size="2">[100]</font></td>
+				<td valign="TOP" width="14%"><font size="2">total</font></td>
+				<td valign="TOP" width="66%"><font size="2">gives a running cycle total since last org pseudo-op</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="20%"><font size="2">{PPP}</font></td>
+				<td valign="TOP" width="14%"><font size="2">type</font></td>
+				<td valign="TOP" width="66%"><font size="2">gives the cycle type</font></td>
+			</tr>
+		</tbody></table>
+		</p>
+		<p><br>
+		The codes used in the cycle type are different for each microcomputer<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The assembly listing may optionally contain a symbol table.
+		The symbol table is included at the end of the assembly listing
+		if enabled. The symbol table contains the name of each symbol,
+		along with its defined value. Since the set pseudo-op can be used
+		to redefine the symbol, the value in the symbol table is the last
+		definition.</p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="errors"></a><b><font size="4">Assembly Errors</font></b></p>
+		<p>Programming errors fall into two categories. Simple typing/syntax
+		error will be flagged by the <b><font color="#0000FF">TExaS </font></b>assembler as an <b>error </b>when the assembler tries to translate source code into machine
+		code. The more difficult programming errors to find and remove
+		are functional bugs that can be identified during execution, when
+		the program does not perform as expected. Error messages are meant
+		to be self-explanatory. The assembler has a <b>verbose</b> (see Assembler-&gt;Options command) mode that provides more details
+		about the error and suggests possible solutions.</p>
+		<p>Assembler Error Types<br>
+		1) Undefined symbol: Program refers to a label that does not exist<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How to fix: check spelling of both the definition and access<br>
+		2) Undefined opcode or pseudo-op<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How to fix: check the spelling/availability of the instruction<br>
+		3) Addressing mode not available<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How to fix: look up the addressing modes available for the
+		instruction<br>
+		4) Expression error<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How to fix: check parentheses, start with a simpler expression<br>
+		5) <a href="#phasing">Phasing Error</a> occurs when the value of a symbol changes from pass1 to pass2<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How to fix: first remove any undefined symbols, then remove
+		forward references<br>
+		6) Address error<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;How to fix: use org pseudo-op&nbsp;s to match available memory.
+		<br>
+		Error diagnostic messages are placed in the listing file just
+		after the line containing the error. If there is no <b>TheList.RTF</b> file, then assembly errors are reported in <b>TheLog.RTF</b> file. If there is neither <b>TheList.RTF</b> or <b>TheLog.RTF</b> files, then assembly errors are not reported.</p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="phasing"></a><b><font size="4">Phasing errors</font></b><font size="4"><br>
+		</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A phasing error occurs during Pass 2 of the assembler when
+		the address of a label is different than when it was previously
+		calculated. The purpose of Pass 1 of the assembler is to create
+		the symbol table. In order to calculate the address of each assembly
+		line, the assembler must be able to determine the exact number
+		of bytes each line will take. For most instructions, the number
+		of bytes required is fixed and easy to calculate, but for other
+		instructions, the number of bytes can vary. A phasing errors occur
+		when the assembler calculates the size of an instruction different
+		in Pass 2 than previously calculated in Pass 2. Sometimes a phasing
+		error often occurs on a line further down in the program than
+		where the mistake occurs. A phasing error usually results from
+		the use of forward references. In this 6812 example the symbol
+		"index" is not available at the time of assembling the <font color="#0000FF">ldaa</font> index,x. The assembler incorrectly chooses the 2 byte IDX addressing
+		mode version rather than the correct 3 byte IDX1 mode.<br>
+		<font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldaa</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">index</font><font size="2" face="Courier,Courier New">,x</font><font color="#008000" size="2" face="Courier,Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">index</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier,Courier New">equ</font><font size="2" face="Courier,Courier New"> </font><font color="#0000FF" size="2" face="Courier,Courier New">100</font><font color="#008000" size="2" face="Courier,Courier New"><br>
+		;&nbsp;&nbsp;...<br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">loop</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldaa</font><font size="2" face="Courier,Courier New"> #</font><font color="#0000FF" size="2" face="Courier,Courier New">0</font></p>
+		<p>The listing shows the phasing error<br>
+		<b><font size="2" face="Courier,Courier New">Copyright 1999-2000 Test EXecute And Simulate<br>
+		</font></b><font size="2" face="Courier,Courier New">$0000&nbsp;A6E064&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ldaa&nbsp;&nbsp;index,x<br>
+		$0064&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index&nbsp;&nbsp;equ&nbsp;&nbsp;100<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;...<br>
+		$0003&nbsp;8600&nbsp;&nbsp;&nbsp;&nbsp;loop&nbsp;&nbsp;&nbsp;ldaa&nbsp;&nbsp;#0<br>
+		</font><font color="#0000FF" size="2" face="Courier,Courier New">##### <br>
+		Phasing error<br>
+		This line was at address $0002 in pass 1, now in pass 2 it is
+		$0003<br>
+		</font><font size="2" face="Courier,Courier New"><br>
+		<b>***************Symbol Table*********************<br>
+		</b>index&nbsp;&nbsp;$0064 <br>
+		loop&nbsp;&nbsp;$0002 <br>
+		</font><b><font color="#FF0000" size="2" face="Courier,Courier New">##### Assembly failed, 1 errors!</font></b></p>
+		<p>When the assembler gets to loop, the Pass 1 and Pass 2 values
+		are off by one causing a phasing error at the <font color="#FF00FF" face="Courier,Courier New">loop </font><font color="#0000FF" face="Courier,Courier New">ldaa</font><font face="Courier,Courier New"> #0</font> instruction. The solution here to simply put the <font color="#FF00FF" face="Courier,Courier New">index</font><font face="Courier,Courier New"> </font><font color="#808080" face="Courier,Courier New">equ</font><font face="Courier,Courier New"> 100</font> first.</p>
+		<p>&nbsp;</p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="pseudo"></a><b><font size="4">Assembler pseudo-op</font></b><font size="4">'<b>s</b></font></p>
+		<p>Pseudo-op's are specific commands to the assembler that are interpreted
+		during the assembly process. A few of them create object code,
+		but most do not. There are two common formats for the pseudo-op's
+		used when developing Motorola assembly language. The <b><font color="#0000FF">TExaS </font></b>assembler supports both categories. If you plan to export software
+		developed with <b><font color="#0000FF">TExaS </font></b>to another application, then you should limit your use only the
+		psuedo-op's compatible with that application.</p>
+		<p>Group A is supported by Motorola's MCUez, HiWare and ImageCraft's
+		ICC11 and ICC12<br>
+		Group B is supported by Motorola's DOS level AS05, AS08, AS11
+		and AS12<br>
+		Group C are some alternative definitions</p>
+		<p><table border="0" cellspacing="0" width="516">
+
+			<tbody><tr>
+				<td valign="TOP" width="13%"><font size="2">Group A</font></td>
+				<td valign="TOP" width="13%"><font size="2">Group B</font></td>
+				<td valign="TOP" width="13%"><font size="2">Group C</font></td>
+				<td valign="TOP" width="60%"><font size="2">meaning</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#org">org</a></td>
+				<td valign="TOP" width="13%"><a href="#org">org</a></td>
+				<td valign="TOP" width="13%"><a href="#org">.org</a></td>
+				<td valign="TOP" width="60%"><font size="2">Specific absolute address to put subsequent object code</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#equ">=</a></td>
+				<td valign="TOP" width="13%"><a href="#equ">equ</a></td>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="60%"><font size="2">Define a constant symbol</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="13%"><a href="#set">set</a></td>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="60%"><font size="2">Define or redefine a constant symbol</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#fcb">dc.b</a><font size="2"> </font><a href="#fcb">db</a></td>
+				<td valign="TOP" width="13%"><a href="#fcb">fcb</a></td>
+				<td valign="TOP" width="13%"><a href="#fcb">.byte</a></td>
+				<td valign="TOP" width="60%"><font size="2">Allocate byte(s) of storage with initialized values</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="13%"><a href="#fcc">fcc</a></td>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="60%"><font size="2">Create an ASCII string (no termination character)</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#fdb">dc.w</a><font size="2"> </font><a href="#fdb">dw</a></td>
+				<td valign="TOP" width="13%"><a href="#fdb">fdb</a></td>
+				<td valign="TOP" width="13%"><a href="#fdb">.word</a></td>
+				<td valign="TOP" width="60%"><font size="2">Allocate word(s) of storage with initialized values</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#dcl">dc.l</a><font size="2"> </font><a href="#dcl">dl</a></td>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="13%"><a href="#dcl">.long</a></td>
+				<td valign="TOP" width="60%"><font size="2">Allocate 32 bit long word(s) of storage with initialized values</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#rmb">ds</a><font size="2"> </font><a href="#rmb">ds.b</a></td>
+				<td valign="TOP" width="13%"><a href="#rmb">rmb</a></td>
+				<td valign="TOP" width="13%"><a href="#rmb">.blkb</a></td>
+				<td valign="TOP" width="60%"><font size="2">Allocate bytes of storage without initialization</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#dsw">ds.w</a></td>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="13%"><a href="#dsw">.blkw</a></td>
+				<td valign="TOP" width="60%"><font size="2">Allocate bytes of storage without initialization</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#dsl">ds.l</a></td>
+				<td valign="TOP" width="13%">&nbsp;</td>
+				<td valign="TOP" width="13%"><a href="#dsl">.blkl</a></td>
+				<td valign="TOP" width="60%"><font size="2">Allocate 32 bit words of storage without initialization</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="13%"><a href="#end">end</a></td>
+				<td valign="TOP" width="13%"><a href="#end">end</a></td>
+				<td valign="TOP" width="13%"><a href="#end">.end</a></td>
+				<td valign="TOP" width="60%"><font size="2">Signifies the end of the source code (</font><b><font color="#0000FF" size="2">TExaS </font></b><font size="2">ignores these)</font></td>
+			</tr>
+		</tbody></table>
+		</p>
+		<p>&nbsp;</p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="equ"></a><b><font size="4">equ equate symbol to a value</font></b></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt; equ &lt;expression&gt; (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt; = &lt;expression&gt; (&lt;comment&gt;)</p>
+		<p>The EQU (or =) directive assigns the value of the expression in
+		the operand field to the label. The equ directive assigns a value
+		other than the program counter to the label. The label cannot
+		be redefined anywhere else in the program. The expression cannot
+		contain any forward references or undefined symbols. Equates with
+		forward references are flagged with <u>Phasing Errors</u>phasing_error. <br>
+		In the following example, the local variable names can not be
+		reused in another subroutine:<br>
+		<font color="#008000" size="2" face="Courier New">; MC68HC812A4<br>
+		; *****binding phase***************<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">I</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">-4</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">PT</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">-3</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">Ans</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">-1</font><font color="#008000" size="2" face="Courier New"><br>
+		; *******allocation phase *********<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">function</font><font size="2" face="Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">pshx</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier New">save old Reg X<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">tsx</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier New">create stack frame pointer<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">leas</font><font size="2" face="Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">-4</font><font size="2" face="Courier New">,sp</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;allocate four bytes for I,PT,Result<br>
+		; ********access phase ************<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">clr</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">I</font><font size="2" face="Courier New">,x</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;Clear I<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">ldy</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">PT</font><font size="2" face="Courier New">,x</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;&nbsp;Reg Y is a copy of PT<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">staa</font><font size="2" face="Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">Ans</font><font size="2" face="Courier New">,x</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;store into Ans<br>
+		; ********deallocation phase *****<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">txs</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier New">deallocation<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">pulx</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier New">restore old X<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">rts</font></p>
+		<p>In the following example, the equ pseudo-op is used to define
+		the I/O ports and to access the various elements of the linked
+		structure.<br>
+		<font color="#008000" size="2" face="Courier New">* ***********Moore.RTF*********************<br>
+		* Jonathan W. Valvano 7/18/98 10:54:28 PM<br>
+		* Moore Finite State Machine Controller <br>
+		* PC1,PC0 are binary inputs, PB1,PB0 are binary outputs</font><font size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">PORTB</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">0x01</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">DDRB</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">0x03</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">PORTC</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">0x04</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">DDRC</font><font size="2" face="Courier New">&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">0x06</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">TCNT</font><font size="2" face="Courier New">&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">0x84</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;; 16 bit unsigned clock, incremented each cycle<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">TSCR</font><font size="2" face="Courier New">&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">0x86</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;; set bit 7=1 to enable TCNT</font><font size="2" face="Courier New"><br>
+		</font><font color="#008000" size="2" face="Courier New">* Finite State Machine Controller <br>
+		* C1,C0 are inputs B1,B0 are outputs<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">org</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">$800</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;variables go in RAM<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">StatePt</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">rmb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">2</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Pointer to the current state</font><font size="2" face="Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">org</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">$F000</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Put in EEPROM so it can be changed<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">Out</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">0</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;offset for output value <br>
+		* 2 bit pattern stored in the low part of an 8 bit byte<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">Wait</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">1</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;offset for time to wait<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">Next</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">2</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;offset for 4 next states<br>
+		* Four 16 bit unsigned absolute addresses<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">InitState</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fdb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">S1</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Initial state<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">%01</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Output<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">5</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;Wait Time<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fdb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S3</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">%10</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Output<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">10</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;&nbsp;Wait Time<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fdb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">S3</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S3</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">S3</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">%11</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Output<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">20</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;&nbsp;Wait Time<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fdb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">org</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">$F800</font><font color="#008000" size="2" face="Courier New"> programs go in ROM<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">Main</font><font size="2" face="Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">lds</font><font size="2" face="Courier New">&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font size="2" face="Courier New">&nbsp;#</font><font color="#0000FF" size="2" face="Courier New">$0C00</font><font color="#008000" size="2" face="Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">movb</font><font size="2" face="Courier New">&nbsp;&nbsp;#</font><font color="#0000FF" size="2" face="Courier New">$FF</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">TSCR</font><font color="#008000" size="2" face="Courier New"> enable TCNT<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">ldaa</font><font size="2" face="Courier New">&nbsp;&nbsp;#</font><font color="#0000FF" size="2" face="Courier New">%11111111</font><font color="#008000" size="2" face="Courier New"> <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">staa</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">DDRB</font><font color="#008000" size="2" face="Courier New"> B1,B0 are LED outputs<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">ldaa</font><font size="2" face="Courier New">&nbsp;&nbsp;#</font><font color="#0000FF" size="2" face="Courier New">%00000000</font><font color="#008000" size="2" face="Courier New"> <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">staa</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">DDRC</font><font color="#008000" size="2" face="Courier New"> C1,C0 are switch inputs<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">ldx</font><font size="2" face="Courier New">&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">InitState</font><font color="#008000" size="2" face="Courier New"> State pointer<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">stx</font><font size="2" face="Courier New">&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">StatePt</font><font color="#008000" size="2" face="Courier New"><br>
+		* Purpose: run the FSM<br>
+		* 1. Perform output for the current state<br>
+		* 2. Wait for specified amout of time <br>
+		* 3. Input from the switches<br>
+		* 4. Go to the next state depending on the input<br>
+		* StatePt is the current state pointer<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">FSM</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">ldx</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">StatePt</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;1. Do output<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">ldab</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">Out</font><font size="2" face="Courier New">,x</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Output value for this state in bits 1,0<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">stab</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">PORTB</font><font color="#008000" size="2" face="Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">ldaa</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">Wait</font><font size="2" face="Courier New">,x</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;2. Wait in this state<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">bsr</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">WAIT</font><font color="#008000" size="2" face="Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">ldab</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">PORTC</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;3. Read input<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">andb</font><font size="2" face="Courier New">&nbsp;&nbsp;#</font><font color="#0000FF" size="2" face="Courier New">$03</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp; just interested in bits 1,0<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">lslb</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#008000" size="2" face="Courier New">2 bytes per 16 bit address<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">abx</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp; </font><font color="#008000" size="2" face="Courier New">add 0,2,4,6 depending on input<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">ldx</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">Next</font><font size="2" face="Courier New">,x</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;4. Next state depending on input <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">stx</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">StatePt</font><font color="#008000" size="2" face="Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">bra</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">FSM</font><font size="2" face="Courier New"><br>
+		</font><font color="#008000" size="2" face="Courier New">* Reg A is the time to wait (256 cycles each)<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">WAIT</font><font size="2" face="Courier New">&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">tfr</font><font size="2" face="Courier New">&nbsp;&nbsp;a,b</font><font color="#008000" size="2" face="Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">clra</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier New">RegD= number of cycles to wait<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">addd</font><font size="2" face="Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">TCNT</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;TCNT value at the end of the delay<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">Wloop</font><font size="2" face="Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">cpd</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">TCNT</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;EndT-TCNT&lt;0 when EndT&lt;Tcnt<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">bpl</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">Wloop</font><font color="#008000" size="2" face="Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">rts</font><font size="2" face="Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">org</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">$FFFE</font><font color="#008000" size="2" face="Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">fdb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">Main</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;reset vector</font></p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="set"></a><b><font size="4">set equate symbol to a value</font></b></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;label&gt; set &lt;expression&gt; (&lt;comment&gt;)</p>
+		<p>The SET directive assigns the value of the expression in the operand
+		field to the label. The set directive assigns a value other than
+		the program counter to the label. Unlike the equ pseudo-op, the
+		label can be redefined anywhere else in the program. The expression
+		should not contain any forward references or undefined symbols.
+		The use of this pseudo-op with forward references will not be
+		flagged with <a href="#phasing">Phasing Errors</a>.</p>
+		<p>In the following example, the local variable names could be reused
+		in another subroutine:<br>
+		<font color="#008000" size="2" face="Courier New">; MC68HC812A4<br>
+		; *****binding phase***************<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">I</font><font size="2" face="Courier New">&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">set</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">-4</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">PT</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">set</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">-3</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">Ans</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">set</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">-1</font><font color="#008000" size="2" face="Courier New"><br>
+		; *******allocation phase *********<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">function</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">pshx</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier New">save old Reg X<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">tsx</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier New">create stack frame pointer<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">leas</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">-4</font><font size="2" face="Courier New">,sp</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;allocate four bytes for I,PT,Result<br>
+		; ********access phase ************<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">clr</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">I</font><font size="2" face="Courier New">,x</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier New">Clear I<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">ldy</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">PT</font><font size="2" face="Courier New">,x</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#008000" size="2" face="Courier New">Reg Y is a copy of PT<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">staa</font><font size="2" face="Courier New">&nbsp;</font><font color="#0000FF" size="2" face="Courier New">Ans</font><font size="2" face="Courier New">,x</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;store into Ans<br>
+		; ********deallocation phase *****<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">txs&nbsp;&nbsp;</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier New">deallocation<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">pulx</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier New">restore old X<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">rts</font></p>
+		<p><br>
+		--------------------------------------------------------------------------------------<br>
+		<a name="fcb"></a><b><font size="4">fcb Form Constant Byte</font></b></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) fcb &lt;expr&gt;(,&lt;expr&gt;,...,&lt;expr&gt;) (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) dc.b &lt;expr&gt;(,&lt;expr&gt;,...,&lt;expr&gt;) (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) db &lt;expr&gt;(,&lt;expr&gt;,...,&lt;expr&gt;) (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) .byte &lt;expr&gt;(,&lt;expr&gt;,...,&lt;expr&gt;) (&lt;comment&gt;)</p>
+		<p>The FCB directive may have one or more operands separated by commas.
+		The value of each operand is truncated to eight bits, and is stored
+		in a single byte of the object program. Multiple operands are
+		stored in successive bytes. The operand may be a numeric constant,
+		a character constant, a symbol, or an expression. If multiple
+		operands are present, one or more of them can be null (two adjacent
+		commas), in which case a single byte of zero will be assigned
+		for that operand. An error will occur if the upper eight bits
+		of the evaluated operands' values are not all ones or all zeros.
+		<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A string can be included, which is stored as a sequence of
+		ASCII characters. The delimitors supported by <b><font color="#0000FF">TExaS </font></b>are " ' and \. The string is not terminated, so the programmer
+		must explicitly terminate it. For example:<br>
+		<font color="#FF00FF" face="Courier New">str1</font><font face="Courier New"> </font><font color="#808080" face="Courier New">fcb</font><font face="Courier New"> </font><font color="#FF00FF" face="Courier New">"Hello World"</font><font face="Courier New">,</font><font color="#0000FF" face="Courier New">0</font></p>
+		<p>In the following finite state machine the fcb definitions are
+		used to store outputs and wait times.<br>
+		<font color="#FF00FF" size="2" face="Courier New">Out</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">0</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;offset for output value <br>
+		* 2 bit pattern stored in the low part of an 8 bit byte<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">Wait</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">1</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;offset for time to wait<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">Next</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">2</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;offset for 4 next states<br>
+		* Four 16 bit unsigned absolute addresses<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">InitState</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fdb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">S1</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Initial state<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">%01</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Output<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">5</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Wait Time<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fdb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S3</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">%10</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Output<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">10</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Wait Time<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fdb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">S3</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S3</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">S3</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">%11</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Output<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">20</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Wait Time<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fdb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S1</font></p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="fcc"></a><b><font size="4">fcc Form Constant Character String</font></b></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) FCC &lt;delimiter&gt;&lt;string&gt;&lt;delimiter&gt; (&lt;comment&gt;)</p>
+		<p>The FCC directive is used to store <u><font face="Helv,Helvetica">ASCII</font></u><font face="Helv,Helvetica"> </font>strings into consecutive bytes of memory. The byte storage begins
+		at the current program counter. The label is assigned to the first
+		byte in the string. Any of the printable <u><font face="Helv,Helvetica">ASCII</font></u><font face="Helv,Helvetica"> </font>characters can be contained in the string. The string is specified
+		between two identical delimiters. The first non-blank character
+		after the FCC directive is used as the delimiter. The delimitors
+		supported by <b><font color="#0000FF">TExaS </font></b>are " ' and \.</p>
+		<p>Examples:</p>
+		<p><font color="#FF00FF" face="Courier,Courier New">LABEL1</font><font face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#808080" face="Courier,Courier New">FCC</font><font face="Courier,Courier New">&nbsp;&nbsp;'</font><font color="#FF0000" face="Courier,Courier New">ABC</font><font face="Courier,Courier New">'</font><font color="#008000" face="Courier,Courier New"><br>
+		</font><font color="#FF00FF" face="Courier,Courier New">LABEL2</font><font face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#808080" face="Courier,Courier New">fcc</font><font face="Courier,Courier New">&nbsp;&nbsp;"</font><font color="#FF0000" face="Courier,Courier New">Jon Valvano </font><font face="Courier,Courier New">"</font><font color="#008000" face="Courier,Courier New"><br>
+		</font><font color="#FF00FF" face="Courier,Courier New">LABEL4</font><font face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#808080" face="Courier,Courier New">fcc</font><font face="Courier,Courier New">&nbsp;&nbsp;/</font><font color="#FF0000" face="Courier,Courier New">Welcome to FunCity!</font><font face="Courier,Courier New">/</font></p>
+		<p>The first line creates the <u><font face="Helv,Helvetica">ASCII</font></u><font face="Helv,Helvetica"> </font>characters<font face="Helv,Helvetica"> </font><b>ABC</b> at location LABEL1. Be careful to position the <font face="Courier,Courier New">fcc</font> code away from executable instructions. The assembler will produce
+		object code like it would for regular instructions, one line at
+		a time. For example the following would crash because after executing
+		the <font color="#0000FF">LDX</font> instruction, the 6811 would try to execute the <u><font face="Helv,Helvetica">ASCII</font></u><font face="Helv,Helvetica"> </font>characters "Trouble" as instructions. <br>
+		<font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldaa</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;100<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldx</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;#Strg<br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">Strg</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier,Courier New">fcc</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#FF00FF" size="2" face="Courier,Courier New">"Trouble"</font></p>
+		<p>Typically we collect all the <font color="#808080" face="Courier,Courier New">fcc, fcb, fdb</font> together and place them at the end of our program, so that the
+		microcomputer does not try to execute the constant data. For example<br>
+		<font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldaa</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;Con8<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldy</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;Con16<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">ldx</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;#Strg<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier,Courier New">bra</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;loop<br>
+		</font><font color="#008000" size="2" face="Courier,Courier New">* Since the bra loop is unconditional, <br>
+		* the 6811 won't go beyond this point.<br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">Strg</font><font size="2" face="Courier,Courier New">&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier,Courier New">fcc</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#FF00FF" size="2" face="Courier,Courier New">"No Trouble"</font><font size="2" face="Courier,Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">Con8</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier,Courier New">fcb</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;100<br>
+		</font><font color="#FF00FF" size="2" face="Courier,Courier New">Con16</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier,Courier New">fdb</font><font size="2" face="Courier,Courier New">&nbsp;&nbsp;1000</font></p>
+		<p><br>
+		--------------------------------------------------------------------------------------<br>
+		<a name="fdb"></a><b><font size="4">fdb Form Double Byte</font></b></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) fdb &lt;expr&gt;(,&lt;expr&gt;,...,&lt;expr&gt;) (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) dc.w &lt;expr&gt;(,&lt;expr&gt;,...,&lt;expr&gt;) (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) dw &lt;expr&gt;(,&lt;expr&gt;,...,&lt;expr&gt;) (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) .word &lt;expr&gt;(,&lt;expr&gt;,...,&lt;expr&gt;) (&lt;comment&gt;)</p>
+		<p>The FDB directive may have one or more operands separated by commas.
+		The 16-bit value corresponding to each operand is stored into
+		two consecutive bytes of the object program. The storage begins
+		at the current program counter. The label is assigned to the first
+		16-bit value. Multiple operands are stored in successive bytes.
+		The operand may be a numeric constant, a character constant, a
+		symbol, or an expression. If multiple operands are present, one
+		or more of them can be null (two adjacent commas), in which case
+		two bytes of zeros will be assigned for that operand.</p>
+		<p>In the following finite state machine the <font color="#808080" size="2" face="Courier New">fdb</font> definitions are used to define state pointers. E.g., the <font color="#FF00FF" size="2" face="Courier New">InitState</font> and the four <font color="#FF00FF" size="2" face="Courier New">Next</font> pointers.<br>
+		<font color="#FF00FF" size="2" face="Courier New">Out</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier,Courier New">&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">0</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;offset for output value <br>
+		* 2 bit pattern stored in the low part of an 8 bit byte<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">Wait</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">1</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;offset for time to wait<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">Next</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">equ</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">2</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;offset for 4 next states<br>
+		* Four 16 bit unsigned absolute addresses<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">InitState</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fdb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">S1</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Initial state<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">%01</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Output<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">5</font><font color="#008000" size="2" face="Courier New">&nbsp;</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#008000" size="2" face="Courier New">&nbsp;Wait Time<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fdb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S3</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">%10</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Output<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">10</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font color="#008000" size="2" face="Courier New">Wait Time<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fdb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">S3</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S3</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">S3</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">%11</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;Output<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fcb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">20</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;</font><font size="2" face="Courier New">&nbsp;</font><font color="#008000" size="2" face="Courier New">Wait Time<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fdb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">S1</font></p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="dcl"></a><b><font size="4">dc.l Define 32 bit constant</font></b></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) dc.l &lt;expr&gt;(,&lt;expr&gt;,...,&lt;expr&gt;) (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) dl &lt;expr&gt;(,&lt;expr&gt;,...,&lt;expr&gt;) (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) .long &lt;expr&gt;(,&lt;expr&gt;,...,&lt;expr&gt;) (&lt;comment&gt;)</p>
+		<p>The <b>dl</b> directive may have one or more operands separated by commas.
+		The 32-bit value corresponding to each operand is stored into
+		four consecutive bytes of the object program (big endian). The
+		storage begins at the current program counter. The label is assigned
+		to the first 32-bit value. Multiple operands are stored in successive
+		bytes. The operand may be a numeric constant, a character constant,
+		a symbol, or an expression. If multiple operands are present,
+		one or more of them can be null (two adjacent commas), in which
+		case four bytes of zeros will be assigned for that operand.</p>
+		<p>In the following finite state machine the <font color="#808080" size="2" face="Courier New">dl</font> definitions are used to define 32 bit constants. <font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">S1</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">dl</font><font size="2" face="Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">100000</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">$12345678</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">S2</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">.long</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">1</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">10</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">100</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">1000</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">10000</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">100000</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">1000000</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">10000000</font><font color="#008000" size="2" face="Courier New"><br>
+		</font><font color="#FF00FF" size="2" face="Courier New">S3</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">dc.l</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">-1</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">0</font><font size="2" face="Courier New">,</font><font color="#0000FF" size="2" face="Courier New">1</font></p>
+		<p><br>
+		--------------------------------------------------------------------------------------<br>
+		<a name="org"></a><b><font size="4">org Set Program Counter to Origin</font></b></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;org&lt;expression&gt; (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.org&lt;expression&gt; (&lt;comment&gt;)</p>
+		<p>The ORG directive changes the program counter to the value specified
+		by the expression in the operand field. Subsequent statements
+		are assembled into memory locations starting with the new program
+		counter value. If no ORG directive is encountered in a source
+		program, the program counter is initialized to zero. Expressions
+		cannot contain forward references or undefined symbols. </p>
+		<p>The <font color="#808080" size="2" face="Courier New">org </font>statements in the following skeleton place the variables in RAM
+		and the programs in EEPROM of a MC68HC812A4<br>
+		<font color="#008000" size="2" face="Courier New">* ********** &lt;&lt;Name&gt;&gt; ********************<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">org</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">$800</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;variables go in RAM<br>
+		* &lt;&lt;globals defined with rmb's go here&gt;&gt;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">org</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">$F000</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;programs in EEPROM<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">Main:</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">lds</font><font size="2" face="Courier New">&nbsp;&nbsp;#</font><font color="#0000FF" size="2" face="Courier New">$0C00</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;initialize stack to RAM<br>
+		* &lt;&lt;one time initializations go here&gt;&gt;<br>
+		</font><font color="#FF00FF" size="2" face="Courier New">loop:</font><font color="#008000" size="2" face="Courier New"><br>
+		* &lt;&lt;repeated operations go here&gt;&gt;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">bra</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">loop</font><font size="2" face="Courier New"><br>
+		</font><font color="#008000" size="2" face="Courier New">* &lt;&lt;subroutines go here&gt;&gt;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">org</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">$FFFE</font><font color="#008000" size="2" face="Courier New"><br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#808080" size="2" face="Courier New">fdb</font><font size="2" face="Courier New">&nbsp;&nbsp;</font><font color="#0000FF" size="2" face="Courier New">Main</font><font color="#008000" size="2" face="Courier New">&nbsp;&nbsp;reset vector</font></p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="rmb"></a><b><font size="4">rmb Reserve Multiple Bytes</font></b></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) rmb &lt;expression&gt; (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) ds &lt;expression&gt; (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) ds.b &lt;expression&gt; (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) .blkb &lt;expression&gt; (&lt;comment&gt;)</p>
+		<p>The RMB directive causes the location counter to be advanced by
+		the value of the expression in the operand field. This directive
+		reserves a block of memory the length of which in bytes is equal
+		to the value of the expression. The block of memory reserved is
+		not initialized to any given value. The expression cannot contain
+		any forward references or undefined symbols. This directive is
+		commonly used to reserve a scratchpad or table area for later
+		use.</p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="dsw"></a><b><font size="4">ds.w Reserve Multiple Words</font></b></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) ds.w &lt;expression&gt; (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) .blkw &lt;expression&gt; (&lt;comment&gt;)</p>
+		<p>The ds.w directive causes the location counter to be advanced
+		by 2 times the value of the expression in the operand field. This
+		directive reserves a block of memory the length of which in words
+		(16 bit) is equal to the value of the expression. The block of
+		memory reserved is not initialized to any given value. The expression
+		cannot contain any forward references or undefined symbols. This
+		directive is commonly used to reserve a scratchpad or table area
+		for later use.</p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="dsl"></a><b><font size="4">ds.l Reserve Multiple 32-bit Words</font></b></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) ds.l &lt;expression&gt; (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&lt;label&gt;) .blkl &lt;expression&gt; (&lt;comment&gt;)</p>
+		<p>The ds.l directive causes the location counter to be advanced
+		by 4 times the value of the expression in the operand field. This
+		directive reserves a block of memory the length of which in words
+		(32 bit) is equal to the value of the expression. The block of
+		memory reserved is not initialized to any given value. The expression
+		cannot contain any forward references or undefined symbols. This
+		directive is commonly used to reserve a scratchpad or table area
+		for later use.</p>
+		<p><br>
+		--------------------------------------------------------------------------------------<br>
+		<a name="end"></a><b><font size="4">end End of program (optional)</font></b></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end (&lt;comment&gt;)<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.end (&lt;comment&gt;)</p>
+		<p>The END directive signifies the end of the source code. The <b><font color="#0000FF">TExaS </font></b>assembler will ignore these pseudo operation codes. </p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="ascii"></a><b><font size="4">ASCII Character codes</font></b></p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font size="2" face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BITS 4 to 6 </font></p>
+		<p><table border="0" cellspacing="0" width="444">
+
+			<tbody><tr>
+				<td valign="TOP" width="6%">&nbsp;</td>
+				<td valign="TOP" width="6%">&nbsp;</td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">0</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">1</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">2</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">3</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">4</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">5</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">6</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">7</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%">&nbsp;</td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">0</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">NUL</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">DLE</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">SP</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">0</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">@</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">P</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">`</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">p</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">B</font></td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">1</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">SOH</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">DC1</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">:</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">1</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">A</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">Q</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">a</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">q</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">I</font></td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">2</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">STX</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">DC2</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">!</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">2</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">B</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">R</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">b</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">r</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">T</font></td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">3</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">ETX</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">DC3</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">#</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">3</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">C</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">S</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">c</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">s</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">S</font></td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">4</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">EOT</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">DC4</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">$</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">4</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">D</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">T</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">d</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">t</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%">&nbsp;</td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">5</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">ENQ</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">NAK</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">%</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">5</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">E</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">U</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">e</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">u</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">0</font></td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">6</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">ACK</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">SYN</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">&amp;</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">6</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">F</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">V</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">f</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">v</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%">&nbsp;</td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">7</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">BEL</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">ETB</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">'</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">7</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">G</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">W</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">g</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">w</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">T</font></td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">8</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">BS</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">CAN</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">(</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">8</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">H</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">X</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">h</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">x</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">O</font></td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">9</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">HT</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">EM</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">)</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">9</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">I</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">Y</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">i</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">y</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%">&nbsp;</td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">A</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">LF</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">SUB</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">*</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">:</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">J</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">Z</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">j</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">z</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">3</font></td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">B</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">VT</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">ESC</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">+</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">;</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">K</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">[</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">k</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">{</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%">&nbsp;</td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">C</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">FF</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">FS</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">,</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">&lt;</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">L</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">\</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">l</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">;</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%">&nbsp;</td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">D</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">CR</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">GS</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">-</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">=</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">M</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">]</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">m</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">}</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%">&nbsp;</td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">E</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">SO</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">RS</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">.</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">&gt;</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">N</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">^</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">n</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">~</font></td>
+			</tr>
+
+			<tr>
+				<td valign="TOP" width="6%">&nbsp;</td>
+				<td valign="TOP" width="6%"><font size="2" face="Courier,Courier New">F</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">S1</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">US</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">/</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">?</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">O</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">_</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">o</font></td>
+				<td valign="TOP" width="11%"><font size="2" face="Courier,Courier New">DEL</font></td>
+			</tr>
+		</tbody></table>
+		</p>
+		<p>&nbsp;</p>
+		<p>--------------------------------------------------------------------------------------<br>
+		<a name="s19"></a><b><font size="4">S-19 Object code</font><br>
+		</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The S-record output format encodes program and data object
+		modules into a printable (<a href="#ascii">ASCII</a>) format. This allows viewing of the object file with standard
+		tools and allows display of the module while transferring from
+		one computer to the next or during loads between a host and target.
+		The S-record format also includes information for use in error
+		checking to insure the integrity of data transfers. <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S-Records are character strings made of several fields that
+		identify the record type, record length, memory address, code/data,
+		and checksum. Each byte of binary data is encoded as a 2-character
+		hexadecimal number: the first character representing the high-order
+		4 bits, and the second the low-order 4 bits of the byte.</p>
+		<p>The 5 fields that comprise an S-record are:<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1) Type S0, S1 or S9<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) Record Length<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Address<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Code/Data<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) Checksum</p>
+		<p>Eight types of S-records have been defined to accommodate various
+		encoding, transportation, and decoding needs, but only three <b>types</b> are used in most Motorola microcontrollers. The <i>S0 record</i> is a title record containing the <a href="#ascii">ASCII</a> name of the file in the Code/Data field. The address field of
+		this type is usually 0000. The <i>S1 record</i> is a data record containing the information to be loaded sequentially
+		starting at the specified address. The <i>S9 record</i> is a end of file marker, and sometimes contains the starting
+		address to begin execution. In an embedded microcomputer environment,
+		the starting address must be programmed at the appropriate place.
+		For most Motorola microcontrollers, the reset vector is the last
+		two bytes of ROM or EEPROM.</p>
+		<p>The <b>Record Length</b> contains the count of the character pairs in the length record,
+		excluding the type and record length.</p>
+		<p>For S0, S1, S9 record types, the <b>Address</b> field is a 4-byte value. For the S1 record type the address specifies
+		where the data field is to be loaded into memory.</p>
+		<p>There are from 0 to n bytes in the <b>Code/Data</b> field. This information contains executable code, memory loadable
+		data, or descriptive information.</p>
+		<p>The <b>Checksum</b> field is 2 ASCII characters used for error checking. The least
+		significant byte of the one's complement of the sum of the values
+		represented by the pairs of characters making up the record length,
+		address, and the code/data fields. When generating a checksum,
+		one adds (call the result <b>sum</b>) the record length, address and code/data field using 8 bit modulo
+		arithmetic (ignoring overflows.) The checksum is calculated<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;checksum = $FF - <b>sum</b><br>
+		When verifying a checksum, one adds (call the result <b>sum</b>) the record length, address code/data field and checksum using
+		8 bit modulo arithmetic (ignoring overflows.) The <b>sum</b> should be $FF.</p>
+		<p>Each record may be terminated with a CR/LF/NULL. </p>
+		<p>The following is a typical S-record module:</p>
+		<p><font face="Courier,Courier New">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S1130000285F245F2212226A000424290008237C2A<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S11300100002000800082629001853812341001813<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S113002041E900084E42234300182342000824A952<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S107003000144ED492<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S9030000FC</font></p>
+		<p>The module consists of four code/data records and an S9 termination
+		record.</p>
+		<p>The first S1 code/data record is explained as follows:</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S1&nbsp;&nbsp;S-record type S1, indicating a code/data record to be
+		loaded/verified at a 2-byte address.</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;13&nbsp;&nbsp;Hex 13 (decimal 19), indicating 19 character pairs, representing
+		19 bytes of binary data, follow.</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00&nbsp;&nbsp;Four-character 2-byte address field: hex address 0000,
+		indicates location where the following data is to be loaded.</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The next 16 character pairs are the ASCII bytes of the actual
+		program code/data</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2A&nbsp;&nbsp;Checksum of the first S1 record.</p>
+		<p>The second and third S1 code/data records each also contain $13
+		character pairs and are ended with checksums. The fourth S1 code/data
+		record contains 7 character pairs.</p>
+		<p>The S9 termination record is explained as follows:</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S9&nbsp;&nbsp;S-record type S9, indicating a termination record.</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;03&nbsp;&nbsp;Hex 03, indicating three character pairs (3 bytes) to
+		follow.</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;00&nbsp;&nbsp;Four character 2-byte address field, zeroes.&nbsp;&nbsp;00</p>
+		<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FC&nbsp;&nbsp;Checksum of S9 record. </p>
+		<p>Document End<b><font size="4"><br>
+		</font></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+           </p>
+		<p>&nbsp;</p>
+	
+</body></html>

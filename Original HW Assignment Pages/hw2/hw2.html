@@ -1,0 +1,229 @@
+<HTML>
+<HEAD>
+<TITLE>CMPEN 472 Homework 2, The Pennsylvania State University</TITLE>
+</HEAD>
+
+<BODY>
+<font face="Arial,Helvetica">
+
+<CENTER><h3>Homework 2</h3></CENTER>
+
+<p>Due: Feb. 3, 2021   11:30pm
+
+<h4>Objective</h4>
+
+<p>Learn simple HC12 assembly program for the parallel port I/O, subroutine, looping, and 
+timing.
+
+<p>
+&nbsp; &nbsp; 
+<img SRC="20200925_120632ssss.jpg" width="25%"> &nbsp; &nbsp; 
+<!-- <img SRC="20200925_120632ss.jpg" width="20%"> &nbsp; &nbsp; --> 
+<img SRC="20200925_120704s.jpg" width="27%">
+
+<h4>Instruction</h4>
+
+<ol>
+
+<li>Read the textbook Chapter 1, Chapter 2, Chapter 3, and Chapter 4.  
+Note, you do NOT need to understand all of them at this time.</li>
+
+<br><li>Review:  Be sure to do the HW1 if you have not done it yet.  
+You should be familiar with the assembly programming process from 
+the HW1.  That is, <br>
+(0) Install the Freescale CodeWarrior IDE, <br>
+(1) start the Freescale CodeWarrior IDE, <br>
+(2) do 'New Project' named CMPEN472hw1, <br>
+(3) type in the source code, <br>
+(4) click the 'Make' icon to assemble and generate the .s19 executable file, <br>
+(5) click the 'Debug' icon to start the Full Chip Simulation, <br>
+(6) add/remove simulation window components, and <br>
+(7) verify correct program functioning or do debug the program. </li>
+
+<br><li>Task:  Create HW2 (named as CMPEN472hw2_lastname) in CodeWarrior, 
+type in the sample program text from 
+<b><a href="hw2c128t.pdf"> hw2prg.pdf </a></b> file. Do <b>make</b> the main.asm file 
+and generate the .s19 executable file.
+</li>
+
+<!--
+<br><li>Once the program has been assembled without error, hook up the serial 
+cable to CSM-12C128 board and your PC's RS232 port (COM1).</li>
+
+<br><li>Run a Hyper Terminal program on your PC.   
+<a href="StartCWnBlinkLED.doc">
+Click here for a guide</a> to working with Hyper Terminal (2nd half).</li>
+
+<br><li>Connect the power to CSM-12C128 board and check the Hyper Terminal display.</li>
+
+<br><li>Load the program to CSM-12C128 board and type 'go 3100'.</li>
+-->
+
+<br><li>Once the program has been assembled without error, Start the 
+Full Chip Simulation Debug.</li>
+
+<br><li>Add COMPONENTS: Component Window called VisualizationTool to the Full_Chip_
+Simulation.  By right clicking on the VisualizationTool, one may set the 
+Properties or Add New Instrument.  Set the VisualizationTool Properties first. <br>
+
+Set Refresh Mode to CPU Cycles <br>
+Set Cycle Refresh Count to 1 </li>
+
+<br><li>Then on the VisualizationTool window, add one LED (Add New Instrument option). 
+Now right click on the LED, then edit Properties, <br>
+
+Set Port to Display to 0x0001 <br>
+Set Size 1 Byte <br>
+Set Byte Order to Big Endian <br>
+Set Bit Number to Display to 7 <br> 
+
+This is the LED 4. </li>
+
+<br><li>Then on the VisualizationTool window, add three more LEDs. 
+Right click on the LEDs, then edit Properties, same way as before. <br>
+
+For LED 3, Set Bit Number to Display to 6. <br>
+For LED 2, Set Bit Number to Display to 5. <br>
+For LED 1, Set Bit Number to Display to 4. </li>
+
+<br><li>Then on the VisualizationTool window, add one DIL Switch (Add New Instrument option). 
+Now right click on the DIL Switch, then edit Properties, <br>
+
+Set Port to Display to 0x0001 <br>
+
+We will use PORTB bit 0, 1, 2, and 3 as switch 1, 2, 3, and 4 of the DIL Switch. </li>
+
+<br><li>Finally on the VisualizationTool window, set the mode from EDIT to DISPLAY mode. </li>
+
+<br><li>Run or single step your program.  Be sure to check that the 
+Program Counter PC is set to $3100
+on your simulator upon start.</li>
+
+<br><li>When you are running the program, see the effects on the LED 4 at 
+PORTB bit 7 - blinking. 
+The speed of the LED 4 at bit 7 blinking can be changed.  It may be too slow 
+or it may be too fast (depends on your Windows 10 computer performance).</li>
+
+<br><li>Try changing the delay values and observe the LED blinking speed. </li>
+
+<!--   --> 
+<br><li>The DIL Switch bit 0 is the SW1 (Switch 1) on the CSM-12C128 board.
+Press SW1 and see the LED light, observe the LED blinking.</li>
+
+<br><li>Please understand the program.</li>
+
+<br><li>For the Homework 2 to turn in, MODIFY the program including the comments. 
+Have your program blink LED 1 and LED 4 alternately.  The LED 1 is on PORTB bit 4 
+and LED 4 is on PORTB bit 7. </li>
+
+<br><li> In another words, the 'blink LED 1 and LED 4 alternatively' mean that 
+both lights should blink at the same time - while 1 is ON and 4 is OFF 
+for 1 second and then 1 is OFF and 4 is ON for next 1 second, and repeat.</li>
+
+<!--   --> 
+<br><li>Also what is SW1 used for?  Well, if sw1 is <b>NOT pressed</b>, do the
+alternat blinking above.  If sw1 is <b>pressed</b>, do something different than 
+the alternate blinking above.  For example, blink all 4 LEDs in sequence: 
+LED 4 ON and others OFF, LED 3 ON and others OFF,
+LED 2 ON and others OFF, LED 1 ON and others OFF, and repeat.
+There are many other possibility with the four LEDs.</li>
+
+<br><li>Again assemble, simulate, and run your program on the Full Chip Simulator.</li>
+
+<br><li>Be sure to correct all the errors and be sure to update the 
+comments (put your name, etc.).  Comments are very
+important in assembly language programs.</li>
+
+<br><li>You may want to see and check the <a href="cmpen472HW2gr02.pdf">
+Sample Grading Sheet</a> for this homework.</li>
+
+<br><li>
+Copy your 'main.asm' file to 'cmpen472hw2_YourLastName.asm'.
+For example, mine will be 'cmpen472hw2_choi.asm'  (Do not ZIP your 
+'cmpen472hw2_YourLastName.asm' file.)</li>
+
+<br><li>
+   Turn-in your project source code file through 
+   <a href="https://psu.instructure.com/login/ldap">Penn State CANVAS</a>.
+   Upload your source code file into the CANVAS Assignment's Homework submission.
+   Be sure to select CMPEN 472 class and correct Homework number,
+   and correct file name.
+</li>
+
+</ol>
+
+<p>Congratulations on your second CMPEN 472 homework completion!
+
+<hr width="100%">
+
+<h4>Debugging Aid</h4>
+
+<ol>
+
+<li>You may use debugger if your program is not working - you need to debug.</li>
+
+<!--
+<br><li>Start CodeWarrior debugger.  On the CodeWarrior Debugger top line pull-down menu, 
+find 'Component' and 'Open' io_LED and Push_button.  Set up the components as follow:
+io_LED at PORT = 1 (PORTB) and DDR = 3, Push_button at PORT = 259 (PORTP).</li>
+
+<br><li>Run the program in the debugger, observe PORTB7 LED blinking.  If you press
+the push button bit 0, PORTB4 LED will turn off.  If you release the push button bit 0,
+PORTB4 LED will be turned ON.</li>
+
+<br><li>Change the delay time on the program to blink faster in your PC.  When you
+change the program source file, you need to re- <b>Make</b> the main.asm file
+and restart the debugger. </li>
+
+<br><li>This debugger option is to test your program and debugging.  You must turnin the
+program for the CSM-12C128 board and not for the debugger.  That is, your turned in 
+program must work on the CSM-12C128 board.</li>
+-->
+
+<br><li>If you set the delay time on the program as minimum (that is 2 or 1), 
+then you can do single step through the program to check the LED light ON and OFF.  
+Again when you change the program source file, you need to re- <b>Make</b> the 
+main.asm file and restart the debugger. </li>
+
+<br><li>Also, the CodeWarrior debugger allows user to set a breakpoint 
+in the program.  One can set the breakpoint after each 1 second delay loop
+and resume with single step to check the proper program operations. </li>
+
+<br><li>Any line in the program displayed in the debugger can be double clicked
+to place a breakpoint.  Another double click on the line with breakpoint
+will remove the breakpoint. </li>
+
+</ol>
+
+<hr width="100%">
+
+
+<!--   --> 
+<p>
+<b>Epilogue:</b>
+
+<p>
+Flow chart of the Homework 2 program.
+<a href="HW2flowChart00.pdf"> Click here.</a>
+
+<p>
+Aid for the Homework 2.
+<a href="hw2etc.pdf"> Click here.</a>
+
+<hr width="100%">
+
+
+
+<pre>
+
+
+
+
+
+
+
+</pre>
+
+</font>
+</BODY>
+</HTML>

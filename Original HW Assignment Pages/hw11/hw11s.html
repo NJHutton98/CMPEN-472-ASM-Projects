@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+<TITLE>CMPEN 472 Homework 11: Flash Memory Programming, The Pennsylvania State University</TITLE>
+</HEAD>
+
+<BODY>
+<font face="Arial,Helvetica">
+
+<CENTER>CMPEN 472, The Pennsylvania State University</CENTER>
+
+<CENTER><h3>Homework 11: Programming Flash Memory</h3></CENTER>
+
+<h4>Objective</h4>
+
+<p>Read Chapter 21 of the HCS12 Microcontroller data sheet MC9S12C Family. 
+And program 40 bytes of data to the flash memory starting at $4800.
+
+<h4>Instruction</h4>
+
+<ol>
+
+<li>Finish reading Chapter 18 of the HCS12 Microcontroller data sheet.<br><br>
+
+
+<li>Study the sample Flash Memory program 
+to store a short program in flash memory:
+
+<!--    -->
+
+<br>
+<a href="HW11C128.pdf"> sample Flash Memory program for HCS12C<b>128</b> board</a> 
+<br><br>
+
+
+<li>Write your Flash Memory program to write 40 bytes to flash memory starting at $4800.<br><br>
+
+<li>First 4 bytes of the 40 byte data must be your student ID number (last 4 digits)
+in ASCII code.  For example, my ID will be $30, $31, $32, $33 (that is '0123').
+The remaining data must be an exact copy of the data block given in the
+sample Flash Memory program.<br><br>
+
+<li>The sample Flash Memory program shows flash memory writing subroutine.  You must write
+flash memory sector erase subroutine.<br><br>
+
+<li>Flash memory must be erased before the data can be written.  Because you will
+be writing only 40 bytes, erase only one sector (1024 bytes) starting at $4800.<br>
+
+<br><li>Design the program to start at $3100 and data to start at $3000 as usual.</li>
+
+<br><li>Be sure to put much comments so that you and others can clearly and
+quickly understand your program later.  Comments are very
+important in assembly language programs.</li>
+
+<br><li>Do NOT Turn-in your project source code file for this Homework.</li>
+
+<br><li>Be sure to return the CMPEN 472 HC12 Board Kit Box to me - see 
+the ANNOUNCEMENT.</li>
+
+</ol>
+
+<p>Congratulations on your CMPEN 472 Course completion!
+
+<hr width="100%">
+
+</font>
+</BODY>
+</HTML>

@@ -1,0 +1,189 @@
+<HTML>
+<HEAD>
+<TITLE>CMPEN 472 Homework 10, The Pennsylvania State University</TITLE>
+</HEAD>
+
+<BODY>
+<font face="Arial,Helvetica">
+
+<CENTER>CMPEN 472, The Pennsylvania State University</CENTER>
+
+<CENTER><h3>Homework 10: Rapid Data Transmission with HCS12</h3></CENTER>
+
+<p>Due: April 14, 2021 &nbsp;&nbsp;&nbsp; 11:30pm
+
+<h4>Objective</h4>
+
+<p>To learn the general-purpose timer module and the timer interrupt, 
+to learn real-time Rapid Data Transmission programming. 
+
+<h4>Textbook Reading (for next homework):</h4>
+<ol>
+<li>MC9S12C Family Data Sheet: Chapters 5, 8, 13, and 15
+</ol>
+
+<h4>Instruction</h4>
+
+<ol>
+
+<li>The HCS12 chip includes a general-purpose Timer Module, for use in many 
+    applications.   Write a program to periodically <br>
+    read the Timer Module's free-running Timer Counter indirectly.  Display the 
+    Timer Counter values on the Terminal and <br>
+    plot the data on a PC screen.  Develop and debug your program using 
+    CodeWarrior Debugger/Simulator.</li>
+
+<li>Be sure to clearly understand the HCS12 chip's Timer Module functions: Output Compare, 
+    Input Capture, Timer Interrupt, and free-running Timer Counter.</li>
+
+<br><li>Write the Homework 10 program to accommodate the following:<br><br>
+
+   <ol>
+   <li>Initialize
+   <li>Your program starts from address $3100, and data section at $3000
+   <li>Your program starts with serial SCI port baud rate set to  <br> 
+       2M baud (at 24MHz, same baud rate and clock frequency as Homework 8 and 9) <br> 
+       and SCI port is connected to a Terminal in the 
+       CodeWarrior Simulator
+   <li>Program execution starts - Print the Welcome message on the Terminal
+   <li>Wait for the first RETURN key hit on the terminal
+       while running a 'typewriter' function
+   <li>Print a short instruction - guiding the user 
+   <li>Wait for the Switch SW0 pressing - Assume that Switch SW0 is at PORTB bit 0.
+   <li>Start the <b>Timer Module Channel 2 Output Compare</b> interrupt 
+       generation at every 125 usec interval (8KHz rate). <br>
+       Each time the Output Compare interrupt occurs, carry out the following tasks:<br><br>
+
+      <ol>
+      <li>Service the Output Compare (OC) register (update the counter compare number) 
+          for the next interrupt.  <br>
+          Also clear the OC interrupt flag (if you selected the Fast Flag 
+          Clear option, updating the timer OC register <br>
+          for the next interrupt will also clear the interrupt flag).
+      <li>Read the Timer Counter value and print the value in decimal number to the Terminal. <br>
+          Print the 16-bit number in decimal. 
+      <li>Increment the data transmit counter<br><br>
+      </ol>
+
+      <li>Wait for the data transmit count to be 1024, to complete the data transmit session
+      <li>Repeat the last 3 steps, beginning with Switch SW0 press waiting, indefinitely
+
+   </ol>
+
+<br><li>Once you verify the above program working, make a modification - to print the
+        numbers in main program and NOT in the interrupt service program.  Principally we 
+        want to keep the interrupt service routine short and minimal.  You may capture 
+        the data in the interrupt service routine but its printing must be
+        done in the main program (outside of the interrupt service routine).  
+        And you also need to create a flag 'happened' so that
+        when a new data is captured, the 'happened' flag becomes TRUE and when you printed 
+        the new data, the 'happened' flag becomes FALSE.</li>
+
+<br><li>Copy the HW10 sample program, <a href="hw10samp1fSim.asm"> hw10samp1fSim.asm</a> file.
+    Study it, assemble it, debug it, and run it on <br>
+    the CodeWarrior HCS12 Debugger/Simulator.  This program uses 
+    Timer channel 2 Output Compare <br>
+    interrupt generation of 125usec for the countdown timer.  You may use some parts 
+    of this program.</li>
+
+<br><li>For the CodeWarrior Debugger/Simulation, please follow the updated 
+    <a href="CWchipSimulatorGuideHW10.pdf"> Full Chip Simulator guide for HW10.</a></li>
+
+<br><li>Data printed on the Simulator Terminal can be captured to a file.  
+    See the demonstration in class and the Full Chip Simulator guide for HW10.
+    You may name the captured data file 'RxData3.txt' and you can view
+    the 'RxData3.txt' file with Notepad or Wordpad program in your PC.</li>
+
+<br><li>You may use MS Excel program to plot the data.  
+    OR download free SciLab Program from 
+    <a href="http://www.scilab.org">SciLab Home</a> page.
+    This program allows your PC to read and plot data.</li>
+
+<br><li>Once the 'RxData3.txt' file is created, run SciLab program.  Then have the
+    SciLab program read the data from the 'RxData3.txt' file and plot the data
+    on a plot window.</li>
+
+<br><li>For a sample SciLab commands for plotting data, 
+    copy the <a href="SciLabCOM.txt">SciLabCOM.txt</a> file. 
+    It shows the list of SciLab commands, you can view or edit with any text
+    editor or SciLab.  You can also run it (same as MATLAB .m file) in SciLab if you
+    change the file name to 'SciLabCOM.sce'  </li>
+
+<br><li>Check the plot and verify the signal frequency.  Use magnify feature to
+    see the signal wave details. Identify one cycle of signal wave, check
+    how many points are plotted.  (again for plotting, one may also use MS Excel)</li>
+
+<br><li>You can acquire another set of 1024-point data as follows:<br><br>
+
+   <ol>
+   <li>Press the switch SW0.
+   <li>New set of data should be recorded into the 'RxData3.txt' file.
+   </ol>
+
+<br><li>Write a report of your experiments.  Your report must include:<br><br>
+
+   <ol>
+   <li>Cover sheet with course and your information.  Click here to 
+       download the <a href="cmpen472hw10_YourLastName_RPT.doc">
+       Homework 10 Report Format.</a>
+   <li>Captured data plot and captured data analysis.
+   <li>Plot full 1024pts and plot magnified 2 signal cycles.
+       Identify one cycle of signal wave, and verify correct signal frequency by
+       counting how many points are plotted in one cycle.
+   <li><b>Detailed explanation</b> of each plot and operation verification.
+   </ol>
+
+<br><li>Create your report in MS Word (.doc file) or .pdf file. </li>
+
+<br><li>Submit both the program file (.asm) and the report file (.doc or .pdf).</li>
+
+<br><li>Make your program user friendly by giving directions as to how to correctly 
+    use your program. Once your program is running, everything must be
+    self-explanatory to user at the Terminal.</li>
+
+<br><li>Also, make your program 'fool-proof', never crash or stop based on wrong 
+    user response. </li>
+
+<br><li>Be sure to put many comments so that grader and others can clearly and
+    quickly understand your program.  Comments are very
+    important in assembly language programs.</li>
+
+<br><li>You may want to see and check the <a href="cmpen472HW10gr01.pdf">
+Sample Grading Sheet</a> for this homework.</li>
+
+<br><li>Copy your 'main.asm' file to 'cmpen472hw10_YourLastName.asm'.
+    For example, mine will be 'cmpen472hw10_choi.asm'  Do not ZIP your 
+    'cmpen472hw10_YourLastName.asm' file. </li>
+
+<br><li>Name your Homework 10 report file to 'cmpen472hw10_YourLastName_RPT.doc'.
+    For example, mine will be 'cmpen472hw10_choi_RPT.doc'  Do not ZIP your 
+    'cmpen472hw10_YourLastName_RPT.doc' file.</li>
+
+<br><li>
+   Turn-in your project source code file through 
+   <a href="https://psu.instructure.com/login/ldap">Penn State CANVAS</a>.
+   Upload your source code file into the CANVAS Assignment's Homework 
+   submission.  Be sure to select CMPEN 472 class and correct Homework 
+   number, and with correct file name.
+</li>
+
+</ol>
+
+<p>Congratulations on your 10th CMPEN 472 homework completion!
+
+<hr width="100%">
+
+<pre>
+
+
+
+
+
+
+
+
+</pre>
+
+</font>
+</BODY>
+</HTML>

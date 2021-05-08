@@ -1,0 +1,157 @@
+<HTML>
+<HEAD>
+<TITLE>CMPEN 472 Homework 9, The Pennsylvania State University</TITLE>
+</HEAD>
+
+<BODY>
+<font face="Arial,Helvetica">
+
+<CENTER>CMPEN 472, The Pennsylvania State University</CENTER>
+
+<CENTER><h3>Homework 9: Calculator and Digital Clock Program with HCS12</h3></CENTER>
+
+<p>Due: April 1, 2021 &nbsp;&nbsp;&nbsp; 11:30pm
+
+<h4>Objective</h4>
+
+<p>To learn interrupt based multi-tasking programming.
+
+<h4>Textbook Reading (for next homework):</h4>
+<ol>
+<li>MC9S12C128 Family Data Sheet: Chapters 5, 9, and 13
+</ol>
+
+<h4>Instruction</h4>
+
+<ol>
+
+<li>Combine the Homework 7 and Homework 8; that is, write Homework 9 program 
+to make a calculator and a digital clock, running at same time.  Use the 
+display on the Terminal connected to the HCS12 board and the 7-segment 
+display connected to the PORTB of the HCS12 board.</li>
+
+<br><li>The calculator and digital clock rules are:<br>
+<br>
+   <ol>
+   <li>Input positive decimal numbers only
+   <li>Input maximum three digit numbers only
+   <li>Valid operators are: +, -, *, and /
+   <li>Input number with leading zero is OK
+   <li>Input only two numbers and one operator in between, no spaces
+   <li>Show 'Tcalc> 'prompt and echo print user keystrokes unltil Return key
+   <li>Repeat print user input and print answer after the '=' sign   
+   <li>In case of an invalid input format, repeat print the user input until the error character
+   <li>In case of an invalid input format, print error message on the next line: 'Invalid input format'
+   <li>Keep 16bit internal binary number format, detect and flag overflow error
+   <li>Use integer division and truncate any fraction
+   <li>60 second (0 to 59) clock
+   <li>"s" for 'set time' command
+   <li>Update the time display every second
+   <li>Time display: two 7-segment displays on PORTB 
+   <li>Calculator display: on the terminal screen 
+   <li>Use Real Time Interrupt feature to keep the time
+   </ol>
+
+<br><li>The Terminal display should look something like the 
+following (same rules as Homeworks 7 and Homework 8):
+
+<pre>
+Tcalc>
+Tcalc> 123+4
+       123+4=127
+Tcalc> 96*15
+       96*15=1440
+Tcalc> 456@5
+       456@
+       Invalid input format
+Tcalc> 7h4*12
+       7h
+       Invalid input format
+Tcalc> 3*1234
+       3*1234
+       Invalid input format	;due to 4th digit
+Tcalc> 003-678
+       003-678=-675
+Tcalc> 100+999*2
+       100+999*
+       Invalid input format
+Tcalc> 555/3
+       555/3=185
+Tcalc> 7*(45+123)
+       7*(
+       Invalid input format
+Tcalc> 78*999
+       78*999
+       Overflow error
+Tcalc> -2*123
+       -
+       Invalid input format
+Tcalc> 73/15
+       73/15=4
+Tcalc>
+Tcalc> s 59
+Tcalc> 
+Tcalc> s 11:05:59
+       Invalid time format. Correct example => 0 to 59
+Tcalc> s 75
+       Invalid time format. Correct example => 0 to 59
+Tcalc> s 1F
+       Invalid time format. Correct example => 0 to 59 
+Tcalc>q
+       Stop clock and calculator, start Typewrite program
+
+</pre>
+
+<li>Make your program user friendly by giving simple directions 
+as to how to correctly use your program. </li>
+
+<br><li>Also, make your program 'fool-proof', never crash or stop based on wrong 
+user response. </li>
+
+<br><li>You may add other features or decorations.</li>
+
+<br><li>Use as many re-usable subroutines as possible, and make your overall program 
+to be small.  So you may re-visit your Homework 7 and 8, and identify the tasks in
+your main program that can be made to be subroutines.  Once you made those subroutines,
+your main program becomes much more simpler and your overall program be smaller.  
+In many cases, your program may be run faster too.</li>
+
+<br><li>Design the program to start at $3100 and data to start at $3000.</li>
+
+<br><li>Be sure to put much comments so that grader and others can clearly and
+quickly understand your program.  Comments are very
+important in assembly language programs.</li>
+
+<br><li>You may want to see and check the <a href="cmpen472HW9gr01.pdf">
+Sample Grading Sheet</a> for this homework.</li>
+
+<br><li>
+Copy your 'main.asm' file to 'cmpen472hw9_YourLastName.asm'.
+For example, mine will be 'cmpen472hw9_choi.asm'  Do not ZIP your 
+'cmpen472hw9_YourLastName.asm' file.</li>
+
+<br><li>
+   Turn-in your project source code file through 
+   <a href="https://psu.instructure.com/login/ldap">Penn State CANVAS</a>.
+   Upload your source code file into the CANVAS Assignment's Homework 
+   submission.  Be sure to select CMPEN 472 class and correct Homework 
+   number, and with correct file name.
+</li>
+
+</ol>
+
+<p>Congratulations on your ninth CMPEN 472 homework completion!
+
+<hr width="100%">
+
+<pre>
+
+
+
+
+
+</pre>
+
+</font>
+</BODY>
+</HTML>

@@ -1,0 +1,134 @@
+<HTML>
+<HEAD>
+<TITLE>CMPEN 472 Homework 7, The Pennsylvania State University</TITLE>
+</HEAD>
+
+<BODY>
+<font face="Arial,Helvetica">
+
+<CENTER>CMPEN 472, The Pennsylvania State University</CENTER>
+
+<CENTER><h3>Homework 7</h3></CENTER>
+
+<p>Due: March 17, 2021 &nbsp;&nbsp;&nbsp; 11:30pm
+
+<h4>Objective</h4>
+
+<p>To learn how to use arithmetic instructions, simple command line parsing, and
+write basic I/O system subroutines.
+
+<h4>Textbook Reading (for next homework):</h4>
+<ol>
+<li>Chapter 9:  Section 9.1, Section 9.2 
+<li>Chapter 9:  Section 9.4, Section 9.5
+</ol>
+
+<h4>Instruction</h4>
+
+<ol>
+
+<li>Write a program to make an elementary calculator, displayed on the HyperTerminal 
+connected to the HCS12 board.</li>
+
+<br><li>The calculator rules are:<br>
+<br>
+   <ol>
+   <li>Input positive decimal numbers only
+   <li>Input maximum three digit numbers only
+   <li>Valid operators are: +, -, *, and /
+   <li>Input number with leading zero is OK
+   <li>Input only two numbers and one operator in between, no spaces
+   <li>Show 'Ecalc> 'prompt and echo print user keystrokes unltil Return key
+   <li>Repeat print user input and print answer after the '=' sign   
+   <li>In case of an invalid input format, repeat print the user input until the error character
+   <li>In case of an invalid input format, print error message on the next line: 'Invalid input format'
+   <li> Keep 16bit internal binary number format, detect and flag overflow error
+   <li> Use integer division and truncate any fraction<br>
+<br>
+   </ol>
+
+<br><li>The HyperTerminal display should look something like the following:
+
+<pre>
+Ecalc>
+Ecalc> 123+4
+       123+4=127
+Ecalc> 96*15
+       96*15=1440
+Ecalc> 456@5
+       456@
+       Invalid input format
+Ecalc> 7h4*12
+       7h
+       Invalid input format
+Ecalc> 3*1234
+       3*1234
+       Invalid input format	;due to 4th digit
+Ecalc> 003-678
+       003-678=-675
+Ecalc> 100+999*2
+       100+999*
+       Invalid input format
+Ecalc> 555/3
+       555/3=185
+Ecalc> 7*(45+123)
+       7*(
+       Invalid input format
+Ecalc> 78*999
+       78*999
+       Overflow error
+Ecalc> -2*123
+       -
+       Invalid input format
+Ecalc> 73/15
+       73/15=4
+Ecalc> 
+</pre>
+
+<br><li>Make your program user friendly by giving directions as to how to correctly 
+use your program. </li>
+
+<br><li>You may want to see the <a href="cmpen472hw7FlowChart16f00.pdf">
+Flow Chart</a> of the above algorithm.</li>
+
+<br><li>Also, make your program 'fool-proof', never crash or stop based on wrong 
+user response. </li>
+
+<br><li>You may add other features or decorations.</li>
+
+<br><li>Design the program to start at $3100 and data to start at $3000.</li>
+
+<br><li>Be sure to put much comments so that grader and others can clearly and
+quickly understand your program.  Comments are very
+important in assembly language programs.</li>
+
+<br><li>
+Copy your 'main.asm' file to 'cmpen472hw7_YourLastName.asm'.
+For example, mine will be 'cmpen472hw7_choi.asm'  (Do not ZIP your file.)
+</li>
+
+<br><li>
+   Turn-in your project source code file through 
+   <a href="https://psu.instructure.com/login/ldap">Penn State CANVAS</a>.
+   Upload your source code file into the CANVAS Assignment's Homework 
+   submission.  Be sure to select CMPEN 472 class and correct Homework 
+   number, and with correct file name.
+</li>
+ 
+</ol>
+
+<p>Congratulations on your seventh CMPEN 472 homework completion!
+
+<hr width="100%">
+
+<pre>
+
+
+
+
+
+</pre>
+
+</font>
+</BODY>
+</HTML>

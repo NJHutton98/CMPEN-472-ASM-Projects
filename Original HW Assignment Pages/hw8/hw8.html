@@ -1,0 +1,174 @@
+<HTML>
+<HEAD>
+<TITLE>CMPEN 472 Homework 8, The Pennsylvania State University</TITLE>
+</HEAD>
+
+<BODY>
+<font face="Arial,Helvetica">
+
+<CENTER>CMPEN 472, The Pennsylvania State University</CENTER>
+
+<CENTER><h3>Homework 8</h3></CENTER>
+
+<p>Due: March 24, 2021 &nbsp;&nbsp;&nbsp; 11:30pm
+
+<h4>Objective</h4>
+
+<p>To learn interrupts and timming: Real Time Interrupt (RTI).
+
+<h4>Textbook Reading (for next homework):</h4>
+
+<ol>
+
+<li>Chapter 9</li>
+
+<li>MC9S12C Family Referemce Manual/Data Sheet: Chapters 1, 5, 9, 13, and 15</li>
+
+</ol>
+
+<h4>Instruction</h4>
+
+<ol>
+
+<li>Write a program to make a digital clock, displayed on the 7-segment displays <br>
+attached to PORTB and the HyperTerminal connected to the HCS12 board. <br>
+(Full 12 hour digital clock in hh:mm:ss format but only the seconds are displayed.)</li>
+
+<br><li>The digital clock rules are:<br>
+<br>
+   <ol>
+   <li>60 second clock
+   <li>"s" for 'set time' command and "q" for 'quit' command, only two commands
+   <li>Update the time display every second
+   <li>Time display on the 7-segment displays attached to PORTB and the commands on terminal screen
+   <li>Show 'Clock> 'prompt and echo print user keystrokes unltil Return key
+   <li>In case of an invalid input format, print error message on the next line: 'Invalid input format'
+   <li>Use Real Time Interrupt feature to keep the time<br>
+<br>
+   </ol>
+
+<li>The Terminal display should look something like the following:
+
+<pre>
+Clock>
+Clock> s 59
+Clock> 
+Clock> s 9
+Clock> 
+Clock> s 09
+Clock> 
+Clock> s 552
+       Invalid time format. Correct example => 0 to 59
+Clock> s 75
+       Invalid time format. Correct example => 0 to 59
+Clock> s A2
+       Invalid time format. Correct example => 0 to 59
+Clock>
+Clock> q
+       Stop clock and start Typewrite program
+
+</pre>
+
+<li>Run and study the following sample programs that use Real Time Interrupt: <br>
+
+<br>Simple LED blinking example program - 
+<a href="hw8sample1b.asm"> hw8sample1b.asm </a> file.  <br>
+
+<br>(For the CodeWarrior simulation, please follow the Homework 8 
+<a href="CWchipSimulatorGuideHW8.pdf"> Full Chip Simulator </a> guide.) <br>
+
+<!-- 
+
+<br>(2) A 10 second count down
+timer example program <a href="hw8sample2.asm"> hw8sample2.asm </a> file 
+(with an example of updating Hyper Terminal screen while user 
+entering commands).  Also see its flow 
+chart in <a href="hw8sam2FlowChart.pdf"> hw8sam2FlowChart.pdf </a> file. <br>
+
+<br>(3) With a command prompt line and center screen, see the 10 second count down
+timer example program <a href="hw8sample3.asm"> hw8sample3.asm </a> file.  
+<br><b>Important:</b> You must set your HyperTerminal (Property) to VT100 mode 
+for this sample program to be fully working. <br>
+
+<br>(For the CodeWarrior simulation, the terminal simulation does not support
+the VT100 mode.  One must display the time using the 7 Segment Display available
+in the Visualization Tool.  Use port P for the hour digits, port A for 
+the minute digits, and port B for the second digits display - 
+use PTP EQU $0258, DDRP EQU $025A.  Click here for the 
+<a href="hw8sample3sim.asm"> modified sample 3 program </a>
+for the CodeWarrior simulation only.) 
+</li>
+
+<br><li>You may want to check the 
+<a href="vt100ansi.htm"> VT100 Terminal Control Escape Sequences </a>
+for the HyperTerminal display control.
+Also check the <a href="ascii.gif"> ASCII Character Table </a>.</li>
+
+<br><li>You may find additional information if you  
+search in Google 'ASCII terminal control' or 'HyperTerminal VT100' 
+for terminal display control information.   You may<br>
+<br>
+   <ol>
+   <li>Clear screen
+   <li>Position the cursor at a screen location
+   <li>Back-space
+   <li>Reverse video a character for highlighting
+   <li>There are many other features following the escape sequence<br>
+<br>
+   </ol>
+
+<li>Nevertheless it is very <b>important</b> that you set your 
+HyperTerminal (Property) to VT100 mode for the Homework 8 and Homework 9.</li>
+
+--> 
+
+<br><li>Make your program user friendly by giving directions as to how to correctly 
+use your program. </li>
+
+<br><li>Also, make your program 'fool-proof', never crash or stop based on wrong 
+user response. </li>
+
+<br><li>You may add other features or decorations.</li>
+
+<br><li>Design the program to start at $3100 and data to start at $3000.</li>
+
+<br><li>Be sure to put much comments so that grader and others can clearly and
+quickly understand your program. <br>
+Comments are very
+important in assembly language programs.</li>
+
+<br><li>You may want to see and check the <a href="cmpen472HW8gr01.pdf">
+Sample Grading Sheet</a> for this homework.</li>
+
+<br><li>
+Copy your 'main.asm' file to 'cmpen472hw8_YourLastName.asm'.
+For example, mine <br>
+will be 'cmpen472hw8_choi.asm'  Do NOT ZIP your 
+'cmpen472hw8_YourLastName.asm' file.</li>
+
+<br><li>
+   Turn-in your project source code file through 
+   <a href="https://psu.instructure.com/login/ldap">Penn State CANVAS</a>. <br>
+   Upload your source code file into the CANVAS Assignment's Homework 
+   submission. <br>
+   Be sure to select CMPEN 472 class and correct Homework 
+   number, and with correct file name.
+</li>
+
+</ol>
+
+<p>Congratulations on your eighth CMPEN 472 homework completion!
+
+<hr width="100%">
+
+<pre>
+
+
+
+
+
+</pre>
+
+</font>
+</BODY>
+</HTML>

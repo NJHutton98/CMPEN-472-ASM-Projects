@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+<TITLE>CMPEN 472 Homework 4, The Pennsylvania State University</TITLE>
+</HEAD>
+
+<BODY>
+<font face="Arial,Helvetica">
+
+<CENTER><h3>Homework 4</h3></CENTER>
+
+<p>Due: Feb. 17, 2021   11:30pm
+
+<h4>Objective</h4>
+
+<p>Learn simple HC12 assembly program for the parallel port I/O, subroutine, looping, and 
+timing. Dimming the LED lights using PWM (Pulse Width Modulation) technique.
+
+
+<h4>Introduction/Background</h4>
+<ol>
+<li>This Semester, we are using ONLY the CodeWarrior Debugger/Simulator to 
+show the hardware and program workings.  For the grading of all homework 
+during this Semester, we will be testing your program on the CodeWarrior 
+simulator only.</li>
+
+<br><li>If your program works on the simulator, it will be working on the 
+actual board, in most cases.  However, there are very few differences 
+between the CodeWarrior simulator and the actual CSM-12C128 board. 
+The only one <b>major difference</b> between running your program on the 
+CodeWarrior simulator and running your program on the actual 
+CSM-12C128 board is <b>timing</b>.  Running your program on the 
+CodeWarrior simulator is about 100 times slower than running your 
+program on the actual CSM-12C128 board.</li>
+
+<br><li>If you correctly complete your Homework 4 program 
+and running it on the CodeWarrior simulator, you will see 
+the fast blinking LED on the simulator Visualization Tool window. 
+And you will notice the duty cycle of an LED ON/OFF ratio change.
+However, when you run your Homework 4 program on the actual CSM-12C128 
+board, you will see the real LED dimmed - it is blinking at least 
+100 times faster than the simulator, so that your eyes perceive it 
+as simply "dimmed" and not blinking.)</li>
+
+<br><li>Another words, the dimming the LED light on the actual 
+CSM-12C128 board means fast blinking LED on the simulator 
+Visualization Tool window and you will see the duty cycle of the LED ON/OFF 
+ratio gradually change.</li>
+</ol>
+
+<h4>Instruction Steps</h4>
+<ol>
+<li>Write the program, 'main.asm', to dimm the LED lights on CSM-12C128 board as follows:<br>
+<br>
+(0) Initially LED 1 is OFF (0%), LED 3 is OFF (0%), and LED 4 is ON (100%),<br>
+(1) LED 2 goes from   0% light level to 100% light level in 4 seconds,<br>
+(2) LED 2 goes from   100% light level to 0% light level in 4 seconds,<br>
+(3) repeat the sequence from (1) to (2). <br><br>
+
+<br><li>You may want to see the <a href="HW4FlowChartLED1pALL.pdf">
+Flow Chart</a> of the above algorithm (for LED 3 in 3 seconds as an example).</li>
+
+<br><li>Design the program to start at $3100 and data to start at $3000. </li>
+
+<br><li>Be sure to put much comments so that grader and others can clearly and
+quickly understand your program.  Comments are very
+important in assembly language programs. </li>
+
+<br><li>You may want to see and check the <a href="cmpen472HW4gr02.pdf">
+Sample Grading Sheet</a> for this homework.</li>
+
+<br><li>
+Copy your 'main.asm' file to 'cmpen472hw4_YourLastName.asm'.
+For example, mine will be 'cmpen472hw4_choi.asm'  Then turn-in your .asm file
+(do NOT ZIP your file).
+</li>
+
+<br><li>
+   Turn-in your project source code file through 
+   <a href="https://psu.instructure.com/login/ldap">Penn State CANVAS</a>.
+   Upload your source code file into the CANVAS Assignment's Homework submission.
+   Be sure to select CMPEN 472 class and correct Homework number,
+   and correct file name.</li>
+
+</ol>
+
+<p>Congratulations on your fourth CMPEN 472 homework completion!
+
+<hr>
+<p>
+<b>Epilogue:</b>
+
+<p>
+Flow chart of the Homework 4 program (for LED 3 in 3 seconds as an example).
+<a href="HW4FlowChartLED1pALL.pdf"> Click here.</a>
+
+<p>
+Aid for the Homework 4.
+<a href="hw4etc.pdf"> Click here.</a>
+
+<hr>
+
+<pre>
+
+
+
+</pre>
+
+</font>
+</BODY>
+</HTML>

@@ -1,0 +1,197 @@
+<HTML>
+<HEAD>
+<TITLE>CMPEN 472 Homework 11, The Pennsylvania State University</TITLE>
+</HEAD>
+
+<BODY>
+<font face="Arial,Helvetica">
+
+<CENTER>CMPEN 472, The Pennsylvania State University</CENTER>
+
+<CENTER><h3>Homework 11: Analog Signal Acquisition with HCS12</h3></CENTER>
+
+<p>Due: April 23, 2021 &nbsp;&nbsp;&nbsp; 11:30pm
+
+<h4>Objective</h4>
+
+<p>To learn timer module interrupt based Analog Signal Acquisition programming.
+
+<h4>Textbook Reading (for next homework):</h4>
+<ol>
+<li>MC9S12C Family Data Sheet: Chapters 5, 8, 13, and 15
+</ol>
+
+<h4>Instruction</h4>
+
+<ol>
+
+<li>Write a program to aquire analog signal through the HCS12 board 
+    (simulation) and display the analog signal values on a Terminal window.</li>
+
+<br><li>The program is outlined as follows:<br><br>
+
+   <ol>
+   <li>Initialize.
+   <li>Your program starts from memory location $3100, data at $3000.
+   <li>The SCI port Terminal baud rate set to 2M baud (assuming 24MHz BUS CLOCK).
+   <li>Wait for the first Enter key hit on the Terminal
+   <li>Print the user guiding messages: <br>
+       (1) saving Terminal output to file, <br>
+       (2) run analog signal command - connect an analog signal to ADC pin 7, <br>
+       (3) when ready, hit SW0 to start the 1024 point ADC data capture.
+   <li>Wait for the Switch SW0 pressing (PORTB bit 0).
+   <li>Start the <b>Timer Module Channel 2 Output Compare</b> interrupt generation at 
+       every 125usec (8KHz rate). <br>
+       Each time the Output Compare interrupt occurs, carry out the following tasks:<br>
+
+<br>
+   <ol>
+   <li>Service the Output Compare (OC) register (update the counter-compare number) for the
+       next interrupt. <br>  Also clear the OC interrupt flag.
+   <li>Pick up the ADC result (from previous conversion) from the ADC result register. <br>
+       And set the flag 'happened'.  Only the lower 8-bit of the ADC result should be picked <br>
+       up as the ADC result data.  The picked up result data will be converted to the <br> 
+       ASCII characters which represents the decimal number representation of the result data. <br>
+       The binary result data to ASCII character change must be done in the main program, <br>
+       not in the interrupt service routine.  
+   <li>Start another single Analog-to-Digital conversion of the signal on the AN7 pin.
+   </ol>
+<br>
+
+   <li>In the main program, if the Timer OC2 interrupt 'happened', 
+       then convert the most recently acquired ADC result data <br>
+       to ASCII characters representing a decimal number.  Then send the ASCII characters to Terminal.
+   <li>Repeat for 1024 ADC result data - until the ADC conversion count to be 1024
+   <li>Print the completion of the 1024 data transmission.
+   <li>Then repeat the last 5 steps when Switch SW0 press happens again.
+   </ol>
+
+
+<br><li>Copy the HW11 sample program file.
+    Study it, assemble it, debug it, and run it on the HCS12 simulator.  This program
+    converts analog signal to digital data and transmits it in ASCII characters.  This 
+    program is used to test the signal connections and ADC operation.  You may use some 
+    parts of this program.  Click here for the HW11 sample 
+    program - <a href="hw11samp1bSim.asm"> hw11samp1bSim.asm</a> file.  Also you will
+    need to save the following two files [right click and select 'Save Link As...' option] 
+    to your <b> project folder </b> for simulating ADC: 
+    <a href="ADCcon7.cmd"> ADCcon7.cmd</a> and 
+    <a href="WAVEsn10.cmw"> WAVEsn10.cmw</a> files. These are the analog signal generator - to be
+    connected to the ADC input pin.
+    Please follow the <a href="CWchipSimulatorGuideHW11.pdf"> Additional Simulation Guide </a> to 
+    connect the ADC input pin to a signal generator.)</li>
+
+<br><li>Additional comments on the Homework 11 (HW11) program are as follows:<br>
+
+<br>
+   <ol>
+   <li>The Homework 11 program must
+       send the 8-bit number in decimal (with ASCII conversion) to Terminal (SCI port).
+   <li>The sample program uses busy ADC wait for ADC completion.  But your Homework 11 program <br>
+       must use the Timer Module Channel 2 Output Compare interrupt.  Set 125usec (8KHz)
+       interrupt rate for each ADC operation.
+   <li>Your Homework 11 
+       program must do one ADC conversion at the rate of exactly 8KHz, 
+       125usec a part.
+   <li>The sample program converts ADC input channel 7 signal.  Also your Homework 11 program must
+       convert ADC input channel 7 signal.
+   <li>The sample program does one conversion per Enter key hit,
+       your Homework 11 program must do 1024 conversions per each Push Button SW0 press. 
+   </ol>
+
+<br><li>Check the plot and verify the signal frequency.  Use magnify feature to
+    see the signal wave details. Identify one cycle of signal wave, check
+    how many points are plotted.  (for plotting, one may also use MS Excel) </li>
+
+<br><li>Program Homework 11 such that the program allows you to aquire another set of 1024 point 
+        ADC data as follows:<br><br>
+
+   <ol>
+   <li>Open Terminal output file.  
+   <li>Attache analog signal to AN7 pin
+   <li>Press the switch SW0.
+   <li>New set of data will be recorded into the 'RxData3.txt' file.<br><br>
+   </ol>
+
+<li>Once your Homework 11 program is finished, run it many times to test that it works.  
+    Change the analog signal wave frequency as well as the wave type as you test your Homework 11 program.
+    Repeat the data acquisition and plotting.</li>
+
+<br><li>Write a report of your Homework 11 program and your experiments.  Your report must include:<br><br>
+
+   <ol>
+   <li>Cover sheet with course and your information.
+   <li>Sine wave plots.  (Signal files: &nbsp; 
+<a href="AWAVE100S.cmd">AWAVE100S.cmd</a> and <a href="AWAVE100S.cmw">AWAVE100S.cmw</a> for 100Hz)
+   <li>Square wave plots.  (Signal files: &nbsp; 
+<a href="AWAVE100Q.cmd">AWAVE100Q.cmd</a> and <a href="AWAVE100Q.cmw">AWAVE100Q.cmw</a> for 100Hz)
+   <li>Triangle wave plots.  (Signal files: &nbsp; 
+<a href="AWAVE100T.cmd">AWAVE100T.cmd</a> and <a href="AWAVE100T.cmw">AWAVE100T.cmw</a> for 100Hz)
+   <li>Mixed frequency sign wave plots.  (Signal files: &nbsp; 
+<a href="AWAVE200S.cmd">AWAVE200S.cmd</a> and <a href="AWAVE200S.cmw">AWAVE200S.cmw</a> for ?Hz and ??Hz)
+   <li>For each signal wave, plot full 1024pts and plot magnified 2 signal cycles.
+       Note the signal shape difference among square, sign, triangle, and mixed waves.
+       Identify one cycle of signal wave, and verify correct signal frequency by
+       counting how many points are plotted in one cycle.
+   <li>Run FFT on the 1024 point signal wave data (each of S, Q, T, and Mix signal), 
+       and plot the FFT results.  You will need to add X axis, the time of each sample point.
+       You may use SciLab FFT command.  You should expect one frequency peak for 
+       S, Q, and T signals and multiple peaks for Mixed signal.  Use proper horizontal and
+       vertical axis, and label them on your plots. 
+   <li>Write the detailed explanation of each plot, and each experiments/operations.<br><br>
+   </ol>
+
+<li>Create your report file.  (You can capture any window on the
+    screen by pressing 'Alt' and 'Print Screen' keys together.  Once captured,
+    you can paste the window picture into the .doc file by pressing
+    'Ctrl' and 'v' keys together.)</li>
+
+<br><li>You will be sending both the report file and program source file
+    for this homework.</li>
+
+<br><li>Make your program user friendly by giving directions as to how to correctly 
+    use your program. Once your program is running, everything must be
+    self explanatory to user at the Terminal.</li>
+
+<br><li>Also, make your program 'fool-proof', never crash or stop based on wrong 
+    user response. </li>
+
+<br><li>Be sure to put much comments so that grader and others can clearly and
+    quickly understand your program.  Comments are very
+    important in assembly language programs.</li>
+
+<br><li>You may want to see and check the <a href="cmpen472HW11gr01.pdf">
+    Sample Grading Sheet</a> for this homework.</li>
+
+<br><li>Copy your 'main.asm' file to 'cmpen472hw11_YourLastName.asm'.
+    For example, mine will be 'cmpen472hw11_choi.asm'  Do not ZIP your 
+    'cmpen472hw11_YourLastName.asm' file. </li>
+
+<br><li>Name your Homework 11 report file to 'cmpen472hw11_YourLastName_RPT.doc'.
+    For example, mine will be 'cmpen472hw11_choi_RPT.doc'  Do not ZIP your 
+    'cmpen472hw11_YourLastName_RPT.doc' file.</li>
+
+<br><li>
+   Turn-in your project source code file through 
+   <a href="https://psu.instructure.com/login/ldap">Penn State CANVAS</a>.
+   Upload your source code file into the CANVAS Assignment's Homework 
+   submission.  Be sure to select CMPEN 472 class and correct Homework 
+   number, and with correct file name.
+</li>
+
+</ol>
+
+<p>Congratulations on your 11th CMPEN 472 homework completion!
+
+<hr width="100%">
+
+<pre>
+
+
+
+
+</pre>
+
+</font>
+</BODY>
+</HTML>
